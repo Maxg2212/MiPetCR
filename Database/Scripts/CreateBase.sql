@@ -126,12 +126,15 @@ CREATE TABLE Mascota (
 
 -- Crea la tabla 'TratamientoProducto' con varias columnas.
 CREATE TABLE TratamientoProducto (
-    id NUMERIC IDENTITY(1,1) NOT NULL, -- Identificador numérico que se incrementa automáticamente.
-    titulo VARCHAR(30) NOT NULL, -- Título del tratamiento o producto.
+    codigo VARCHAR(7) NOT NULL, -- Identificador numérico que se incrementa automáticamente.
     descripcion VARCHAR(300) NOT NULL, -- Descripción del tratamiento o producto.
+    marca VARCHAR(20), -- Información de la marca del producto.
     precio MONEY NOT NULL, -- Precio del tratamiento o producto.
+    iva FLOAT, -- Porcentaje a aplicar de iva al precio
+    cantidad_disponible INTEGER, -- Cantidad de unidades disponibles del producto
+    categoria VARCHAR(80) NOT NULL, -- Información de la categoría a la que pertenece el producto
     proc_med BIT NOT NULL, -- Indicador si es un procedimiento médico.
-    CONSTRAINT TratamientoProducto_PK PRIMARY KEY(id) -- Llave primaria en 'id'.
+    CONSTRAINT TratamientoProducto_PK PRIMARY KEY(codigo) -- Llave primaria en 'id'.
 );
 
 -- Crea la tabla 'HistorialMedico' con varias columnas, incluyendo dos claves foráneas a 'Mascota' y 'TratamientoProducto'.
@@ -140,10 +143,10 @@ CREATE TABLE HistorialMedico (
     fecha DATE NOT NULL, -- Fecha del historial médico.
     detalles VARCHAR(300) NOT NULL, -- Detalles del historial médico.
     id_mascota NUMERIC NOT NULL, -- Identificación de la mascota.
-    id_tratamiento NUMERIC NOT NULL, -- Identificación del tratamiento o producto.
+    cod_tratamiento VARCHAR(7) NOT NULL, -- Identificación del tratamiento o producto.
     CONSTRAINT HistorialMedico_PK PRIMARY KEY(id), -- Llave primaria en 'id'.
     CONSTRAINT HistorialMedico_FK1 FOREIGN KEY(id_mascota) REFERENCES Mascota(id), -- Llave foránea a 'Mascota'.
-    CONSTRAINT HistorialMedico_FK2 FOREIGN KEY(id_tratamiento) REFERENCES TratamientoProducto(id) -- Llave foránea a 'TratamientoProducto'.
+    CONSTRAINT HistorialMedico_FK2 FOREIGN KEY(cod_tratamiento) REFERENCES TratamientoProducto(codigo) -- Llave foránea a 'TratamientoProducto'.
 );
 
 -- Crea la tabla 'CitaMedica' con varias columnas, incluyendo tres claves foráneas a 'Usuario', 'Veterinaria' y 'Mascota'.
@@ -195,9 +198,9 @@ CREATE TABLE DireccionEntrega (
 -- Crea la tabla 'ListaCompras' con dos claves foráneas a 'OrdenCompra' y 'TratamientoProducto'.
 CREATE TABLE ListaCompras (
     id_orden NUMERIC NOT NULL, -- Identificación de la orden de compra.
-    id_producto NUMERIC NOT NULL, -- Identificación del tratamiento o producto.
+    cod_producto VARCHAR(7) NOT NULL, -- Identificación del tratamiento o producto.
     CONSTRAINT ListaCompras_FK1 FOREIGN KEY(id_orden) REFERENCES OrdenCompra(id), -- Llave foránea a 'OrdenCompra'.
-    CONSTRAINT ListaCompras_FK2 FOREIGN KEY(id_producto) REFERENCES TratamientoProducto(id) -- Llave foránea a 'TratamientoProducto'.
+    CONSTRAINT ListaCompras_FK2 FOREIGN KEY(cod_producto) REFERENCES TratamientoProducto(codigo) -- Llave foránea a 'TratamientoProducto'.
 );
 
 
