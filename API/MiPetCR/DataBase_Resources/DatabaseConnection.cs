@@ -11,7 +11,7 @@ namespace MiPetCR.DataBase_Resources
     {
         public static string cadenaConexion = "Data Source=LAPTOP-85GS8ERK;Initial Catalog=MyPetsCR;Persist Security Info=True;User ID=maxgm;Password=1234";//This
 
-        //Metodo que permite hacer una reservacion en la vista paciente
+        //Metodo que permite hacer crear un nuevo cliente
         public static bool CreateClient(ClientModel client_nuevo)
         {
 
@@ -50,7 +50,7 @@ namespace MiPetCR.DataBase_Resources
 
         }
 
-        //Metodo que permite obtener las reservaciones que hace un paciente
+        //Metodo que permite obtener todos los usuarios
         public static DataTable GetUsers()
         {
             SqlConnection conn = new SqlConnection(cadenaConexion);
@@ -59,6 +59,7 @@ namespace MiPetCR.DataBase_Resources
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[up_RecuperarUsuarios]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
 
                 DataTable tabla = new DataTable();
