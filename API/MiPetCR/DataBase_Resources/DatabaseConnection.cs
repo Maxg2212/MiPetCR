@@ -49,5 +49,33 @@ namespace MiPetCR.DataBase_Resources
             }
 
         }
+
+        //Metodo que permite obtener las reservaciones que hace un paciente
+        public static DataTable GetUsers()
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[up_RecuperarUsuarios]", conn);
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
