@@ -81,21 +81,129 @@ namespace MiPetCR.DataBase_Resources
 
         //Metodo para hacer login en cualquier vista de la web app
         //Retorna un datatable con la informacion del usuario
-        public static DataTable Login(Credentials login_credentials)
+        public static bool Login(Credentials login_credentials)
         {
             SqlConnection conexion = new SqlConnection(cadenaConexion);
+            
 
             try
             {
-                conexion.Open();
+                
                 //Llamada a la funcion 
-                SqlCommand cmd = new SqlCommand("[dbo].[up_VerificarInicioSesion] (@correo,@contrasena)", conexion);
+                SqlCommand cmd = new SqlCommand("[dbo].[up_VerificarInicioSesion]", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-
+                bool resultado_existe = false;
                 //Parametros que recibe la funcion 
                 cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = login_credentials.correo;
                 cmd.Parameters.AddWithValue("@contrasena", SqlDbType.VarChar).Value = login_credentials.contrasena;
+                cmd.Parameters.AddWithValue("@resultado", SqlDbType.Bit).Value = login_credentials.resultado;
 
+                Console.WriteLine("Entro aqui");
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+
+                resultado_existe = Convert.ToBoolean(cmd.Parameters["@resultado"].Value);
+
+
+                return resultado_existe;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+        }
+
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool InsertMedicalHistory(HistorialMedicoModel historialmedico)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_InsertarHistorialMedico]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                //cmd.Parameters.AddWithValue("@cedula", SqlDbType.Int).Value = client_nuevo.cedula;
+                cmd.Parameters.AddWithValue("@fecha", SqlDbType.Date).Value = historialmedico.fecha;
+                cmd.Parameters.AddWithValue("@detalles", SqlDbType.VarChar).Value = historialmedico.detalles;
+                cmd.Parameters.AddWithValue("@id_mascota", SqlDbType.Int).Value = historialmedico.id_mascota;
+                cmd.Parameters.AddWithValue("@cod_tratamiento", SqlDbType.VarChar).Value = historialmedico.cod_tratamiento;
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool InsertMascota(MascotaModel new_mascota)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_InsertarMascotas]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                //cmd.Parameters.AddWithValue("@cedula", SqlDbType.Int).Value = client_nuevo.cedula;
+                cmd.Parameters.AddWithValue("@ced_dueno", SqlDbType.Int).Value = new_mascota.ced_dueno;
+                cmd.Parameters.AddWithValue("@especie", SqlDbType.VarChar).Value = new_mascota.especie;
+                cmd.Parameters.AddWithValue("@raza", SqlDbType.VarChar).Value = new_mascota.raza;
+                cmd.Parameters.AddWithValue("@nombre", SqlDbType.VarChar).Value = new_mascota.nombre;
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        //Metodo que permite obtener todos los usuarios
+        public static DataTable GetPets(Mascota_Dueno cedula_dueno)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarMascotas]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
 
                 DataTable tabla = new DataTable();
@@ -111,9 +219,8 @@ namespace MiPetCR.DataBase_Resources
             }
             finally
             {
-                conexion.Close();
+                conn.Close();
             }
-
         }
     }
 }

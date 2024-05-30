@@ -2,6 +2,6 @@
 {
     public class ResultadoLogin
     {
-        public bool resultado { get; set; } = false;
+        public int resultado { get; set; } 
     }
 }
