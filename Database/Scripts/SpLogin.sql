@@ -4,12 +4,10 @@
 |                                     |
 -------------------------------------*/
 
--- Eliminar la función si ya existe
+-- >>> Crear la función para cifrar la contraseña con SHA-256 <<<
 IF OBJECT_ID(N'dbo.fn_CifrarContrasena', N'FN') IS NOT NULL
     DROP FUNCTION dbo.fn_CifrarContrasena;
 GO
-
--- Crear la función para cifrar la contraseña con SHA-256
 CREATE FUNCTION fn_CifrarContrasena (
     @contrasena VARCHAR(64)
 )
@@ -22,12 +20,10 @@ BEGIN
 END;
 GO
 
--- Eliminar el procedimiento almacenado si ya existe
+-- >>> Crear el procedimiento almacenado para insertar un nuevo usuario <<<
 IF OBJECT_ID(N'dbo.up_InsertarUsuario', N'P') IS NOT NULL
     DROP PROCEDURE dbo.up_InsertarUsuario;
 GO
-
--- Crear el procedimiento almacenado para insertar un nuevo usuario
 CREATE PROCEDURE up_InsertarUsuario
     @cedula NUMERIC(10),
     @rol_id NUMERIC(1),
@@ -72,23 +68,9 @@ BEGIN
 END;
 GO
 
--- Crear el procedimiento almacenado para recuperar todos los usuarios con su información y su rol
-IF OBJECT_ID(N'dbo.up_RecuperarUsuarios', N'P') IS NOT NULL
-    DROP PROCEDURE dbo.up_RecuperarUsuarios;
-GO
-CREATE PROCEDURE up_RecuperarUsuarios
-AS
-BEGIN
-    -- Seleccionar todos los usuarios junto con su información y el nombre del rol
-    SELECT 
-        A.cedula,        -- Identificación única del usuario
-        A.correo,        -- Correo electrónico del usuario
-        A.nombre,        -- Nombre del usuario
-        A.telefono,      -- Teléfono del usuario
-        B.rol_nombre     -- Nombre del rol asociado al usuario
-    FROM Usuario AS A JOIN RolUsuario AS B ON A.rol_id = B.id; 
-END;
-GO
+-- >>> Procedimiento para verificar el inicio de sesión del usuario <<<
+
+-- >>> Procedimiento para actualizar la contraseña de un usuario <<<
 
 
 
