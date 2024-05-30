@@ -25,13 +25,19 @@ namespace MiPetCR.Controllers
                 Credentials user = new Credentials();
                 bool allUser = DatabaseConnection.Login(users_credentials); //Llamada al metodo que ejecuta la funcion en SQL que retorna una tabla con la informacion del paciente
                
-                json.result = allUser;
-                //json.status = "ok";
+                if(allUser)
+                {
+                    json.result = allUser;
+                    json.status = "ok";
+                    return Ok(json);
+                }
+                else
+                {
+                    json.result = allUser;
+                    return BadRequest(json);
+                }
                 
-                //return json;
-
-                return Ok(json);
-
+                
 
             }
             catch (Exception ex)

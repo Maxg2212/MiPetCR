@@ -84,7 +84,8 @@ namespace MiPetCR.DataBase_Resources
         public static bool Login(Credentials login_credentials)
         {
             SqlConnection conexion = new SqlConnection(cadenaConexion);
-            
+            bool resultado_existe = false;
+
 
             try
             {
@@ -92,18 +93,19 @@ namespace MiPetCR.DataBase_Resources
                 //Llamada a la funcion 
                 SqlCommand cmd = new SqlCommand("[dbo].[up_VerificarInicioSesion]", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-                bool resultado_existe = false;
+                
                 //Parametros que recibe la funcion 
                 cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = login_credentials.correo;
-                cmd.Parameters.AddWithValue("@contrasena", SqlDbType.VarChar).Value = login_credentials.contrasena;
-                cmd.Parameters.AddWithValue("@resultado", SqlDbType.Bit).Value = login_credentials.resultado;
+                cmd.Parameters.AddWithValue("@contrasena", SqlDbType.VarChar).Value = Encryption.encrypt_password(login_credentials.contrasena);
+                cmd.Parameters.AddWithValue("@resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
 
                 Console.WriteLine("Entro aqui");
                 conexion.Open();
                 cmd.ExecuteNonQuery();
 
-                resultado_existe = Convert.ToBoolean(cmd.Parameters["@resultado"].Value);
 
+                resultado_existe = Convert.ToBoolean(cmd.Parameters["@resultado"].Value);
+                Console.WriteLine(resultado_existe);
 
                 return resultado_existe;
             }

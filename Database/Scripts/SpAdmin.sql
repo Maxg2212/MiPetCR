@@ -31,7 +31,7 @@ GO
 
 -- >>> Store Procedure para recuperar los expedientes médicos <<<
 IF OBJECT_ID(N'dbo.up_RecuperarExpedientes', N'P') IS NOT NULL
-    DROP PROCEDURE dbo.up_RecuperarUsuarios;
+    DROP PROCEDURE dbo.up_RecuperarExpedientes;
 GO
 CREATE PROCEDURE up_RecuperarExpedientes
 AS
