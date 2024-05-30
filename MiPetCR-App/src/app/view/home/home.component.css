@@ -1,5 +1,18 @@
+
 .center{
     margin: auto;
     width: 50%;
     padding: 10px;
 }
+
+
+  .custom-btn {
+      background-color: #e2860d;
+      color: white;
+      border: none;
+  }
+  
+  .custom-btn:hover {
+      background-color: #cc770b; /* Slightly darker shade for hover effect */
+      color: white;
+  }
