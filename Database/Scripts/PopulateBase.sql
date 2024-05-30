@@ -1,3 +1,7 @@
+-- Cambia el contexto a la base de datos 'MyPetsCR'.
+USE MyPetsCR
+GO
+
 -- Insertar roles de administrador, veterinario y cliente
 INSERT INTO RolUsuario (rol_nombre) VALUES ('Administrador');
 INSERT INTO RolUsuario (rol_nombre) VALUES ('Veterinario');

@@ -4,6 +4,10 @@
 |                                     |
 -------------------------------------*/
 
+-- Cambia el contexto a la base de datos 'MyPetsCR'.
+USE MyPetsCR
+GO
+
 -- >>> Store Procedure para recuperar los registros una mascota (ya implementado en SpCliente) (up_RecuperarHistorialMedico) <<< 
 
 -- >>> Store Procedure para insertar un nuevo registro al historial medico <<<
@@ -21,8 +25,9 @@ BEGIN
     VALUES (@fecha, @detalles, @id_mascota, @cod_tratamiento);
 END
 GO
--- >>> Store Procedure para modificar un registro de expediente medico <<<
+----------------------------------------------------------------------------
 
+-- >>> Store Procedure para modificar un registro de expediente medico <<<
 IF OBJECT_ID(N'dbo.up_EditarHistorialMedico', N'P') IS NOT NULL
     DROP PROCEDURE dbo.up_EditarHistorialMedico;
 GO
@@ -42,3 +47,4 @@ BEGIN
     WHERE id = @id;
 END
 GO
+----------------------------------------------------------------------------

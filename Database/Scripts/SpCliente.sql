@@ -4,6 +4,10 @@
 |                                     |
 -------------------------------------*/
 
+-- Cambia el contexto a la base de datos 'MyPetsCR'.
+USE MyPetsCR
+GO
+
 -- >>> Store Procedure para recuperar los productos de la veterinaria (ya implementado en SpAdmin) (up_RecuperarProductos) <<< 
 
 -- >>> Store Procedure para insertar una compra de un cliente no registrado <<<
