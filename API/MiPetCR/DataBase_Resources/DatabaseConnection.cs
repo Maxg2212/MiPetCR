@@ -78,5 +78,42 @@ namespace MiPetCR.DataBase_Resources
                 conn.Close();
             }
         }
+
+        //Metodo para hacer login en cualquier vista de la web app
+        //Retorna un datatable con la informacion del usuario
+        public static DataTable Login(Credentials login_credentials)
+        {
+            SqlConnection conexion = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conexion.Open();
+                //Llamada a la funcion 
+                SqlCommand cmd = new SqlCommand("[dbo].[up_VerificarInicioSesion] (@correo,@contrasena)", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //Parametros que recibe la funcion 
+                cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = login_credentials.correo;
+                cmd.Parameters.AddWithValue("@contrasena", SqlDbType.VarChar).Value = login_credentials.contrasena;
+
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+        }
     }
 }
