@@ -23,10 +23,10 @@ END
 GO
 -- >>> Store Procedure para modificar un registro de expediente medico <<<
 
-IF OBJECT_ID(N'dbo.up_InsertarHistorialMedico', N'P') IS NOT NULL
-    DROP PROCEDURE dbo.up_InsertarHistorialMedico;
+IF OBJECT_ID(N'dbo.up_EditarHistorialMedico', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.up_EditarHistorialMedico;
 GO
-CREATE PROCEDURE up_InsertarHistorialMedico
+CREATE PROCEDURE up_EditarHistorialMedico
     @id NUMERIC,
     @fecha DATE,
     @detalles VARCHAR(300),
