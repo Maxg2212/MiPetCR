@@ -8,6 +8,9 @@ import { HomeComponent } from './view/home/home.component';
 import { FooterComponent } from './view/footer/footer.component';
 import { LoginClientComponent } from './view/login-client/login-client.component';
 import { NavbarComponent } from './view/navbar/navbar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { StoreComponent } from './view/store/store.component';
 
 @NgModule({
   declarations: [
@@ -15,11 +18,14 @@ import { NavbarComponent } from './view/navbar/navbar.component';
     FooterComponent,
     HomeComponent,
     LoginClientComponent,
-    NavbarComponent
+    NavbarComponent,
+    StoreComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { 
         path: '', 
@@ -28,6 +34,10 @@ import { NavbarComponent } from './view/navbar/navbar.component';
       { 
         path: 'login-client', 
         component: LoginClientComponent 
+      },
+      { 
+        path: 'store', 
+        component: StoreComponent 
       }
     ]),
   ],

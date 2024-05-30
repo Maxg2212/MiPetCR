@@ -1,1 +1,58 @@
-<p>login-client works!</p>
+<body>
+    
+    <app-navbar></app-navbar>
+
+    <div class="container my-3">
+            
+            
+            <div class="card-body">
+                
+                <div class="row">
+
+                    <div class="col-xs-12 col-s-12 col-m-6 col-l-6 col-xl-6">
+
+                        <div class="h2">
+                            Client Login
+                        </div>
+
+                        <form [formGroup]="clientForm" (ngSubmit)="clientLogin(clientForm.getRawValue())">
+                    
+                            <div class="mb-4 mx-4">
+                                <label for="email" class="form-label">Email</label>
+    
+                                <input 
+                                    type="email" 
+                                    formControlName="email"
+                                    class="form-control" 
+                                    placeholder="example@domain.com" 
+                                    autofocus />
+            
+                            </div>
+                
+                            <div class="mb-4 mx-4">
+                                <label for="password" class="form-label">Password</label>
+                                <input 
+                                    type="password" 
+                                    formControlName="password"
+                                    class="form-control" 
+                                    placeholder="password" />
+                            </div>
+    
+                            <div class="row center">
+                                
+                                <button class="btn btn-success" type="submit">Login</button>
+                                <div class="py-1"></div>
+                                <a class="btn btn-success" type="submit" href="/register-client">Sign Up</a>
+                                
+                            </div>
+                
+                        </form>
+
+                    </div>
+        
+                </div>
+
+            </div>
+        </div>
+
+</body>
