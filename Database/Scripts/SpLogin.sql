@@ -1,3 +1,8 @@
+/*-------------------------------------
+|                                     |
+|       Store Procedures Login        |
+|                                     |
+-------------------------------------*/
 
 -- Eliminar la función si ya existe
 IF OBJECT_ID(N'dbo.fn_CifrarContrasena', N'FN') IS NOT NULL
