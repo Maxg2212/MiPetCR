@@ -92,7 +92,8 @@ CREATE TABLE Usuario (
     nombre VARCHAR(80) NOT NULL, -- Nombre del usuario.
     telefono NUMERIC(8) NOT NULL -- Teléfono del usuario.
     CONSTRAINT Usuario_PK PRIMARY KEY(cedula), -- Llave primaria en 'cedula'.
-    CONSTRAINT Usuario_FK FOREIGN KEY(rol_id) REFERENCES RolUsuario(id) -- Llave foránea a 'RolUsuario'.
+    CONSTRAINT Usuario_FK FOREIGN KEY(rol_id) REFERENCES RolUsuario(id), -- Llave foránea a 'RolUsuario'.
+    CONSTRAINT Usuario_Unique_Correo UNIQUE(correo) -- Hacer que el correo sea único
 );
 
 -- Crea la tabla 'Veterinaria' con varias columnas.
