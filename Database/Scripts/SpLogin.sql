@@ -4,6 +4,10 @@
 |                                     |
 -------------------------------------*/
 
+-- Cambia el contexto a la base de datos 'MyPetsCR'.
+USE MyPetsCR
+GO
+
 -- >>> Crear la función para cifrar la contraseña con SHA-256 <<<
 IF OBJECT_ID(N'dbo.fn_CifrarContrasena', N'FN') IS NOT NULL
     DROP FUNCTION dbo.fn_CifrarContrasena;
