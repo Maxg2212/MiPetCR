@@ -34,7 +34,7 @@ namespace MiPetCR.DataBase_Resources
 
 
                 int i = cmd.ExecuteNonQuery();
-                return (i > 0) ? false : true;//Funciona
+                return (i > 0) ? true : false;//Funciona
 
             }
             catch (Exception ex)
@@ -58,7 +58,7 @@ namespace MiPetCR.DataBase_Resources
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[up_RecuperarUsuarios]", conn);
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarUsuarios]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
 
