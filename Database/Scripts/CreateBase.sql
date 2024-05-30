@@ -102,7 +102,7 @@ CREATE TABLE Veterinaria (
     provincia VARCHAR(50) NOT NULL, -- Provincia de la veterinaria.
     canton VARCHAR(50) NOT NULL, -- Cantón de la veterinaria.
     distrito VARCHAR(50) NOT NULL, -- Distrito de la veterinaria.
-    domicilio VARCHAR(50) NOT NULL, -- Dirección de la veterinaria.
+    domicilio VARCHAR(300) NOT NULL, -- Dirección de la veterinaria.
     CONSTRAINT Veterinaria_PK PRIMARY KEY(id) -- Llave primaria en 'id'.
 );
 
