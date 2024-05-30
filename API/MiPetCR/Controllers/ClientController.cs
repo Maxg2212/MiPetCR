@@ -56,7 +56,7 @@ namespace MiPetCR.Controllers
 
         //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
         [HttpPost("get_my_pets")]
-        public async Task<ActionResult<JSON_Object>> GetPets([FromQuery] Mascota_Dueno cedula_dueno)
+        public async Task<ActionResult<JSON_Object>> GetPets(Mascota_Dueno cedula_dueno)
         {
             JSON_Object json = new JSON_Object("error", null);
 

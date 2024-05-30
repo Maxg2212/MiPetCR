@@ -207,6 +207,8 @@ namespace MiPetCR.DataBase_Resources
                 SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarMascotas]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.AddWithValue("@ced_dueno", SqlDbType.Int).Value = cedula_dueno.cedula;
+
 
                 DataTable tabla = new DataTable();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
