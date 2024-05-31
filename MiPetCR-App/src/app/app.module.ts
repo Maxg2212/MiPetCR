@@ -11,6 +11,7 @@ import { NavbarComponent } from './view/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { StoreComponent } from './view/store/store.component';
+import { RegisterClientComponent } from './view/register-client/register-client.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { StoreComponent } from './view/store/store.component';
     HomeComponent,
     LoginClientComponent,
     NavbarComponent,
-    StoreComponent
+    StoreComponent,
+    RegisterClientComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,10 @@ import { StoreComponent } from './view/store/store.component';
       { 
         path: 'login-client', 
         component: LoginClientComponent 
+      },
+      { 
+        path: 'register-client', 
+        component: RegisterClientComponent 
       },
       { 
         path: 'store', 
