@@ -1,0 +1,452 @@
+[
+    {
+        "Código": "PROD001",
+        "Descripción": "Alimento húmedo para gatos, sabor atún, 500 g",
+        "Marca": "Kong",
+        "Precio": 35.24,
+        "IVA": 13,
+        "CantidadDisponible": 13,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD002",
+        "Descripción": "Pienso para conejos, 1 kg",
+        "Marca": "Hill's",
+        "Precio": 72.83,
+        "IVA": 13,
+        "CantidadDisponible": 39,
+        "Categoría": "Alimento para gatos"
+    },
+    {
+        "Código": "PROD003",
+        "Descripción": "Pienso para conejos, 1 kg",
+        "Marca": "Pedigree",
+        "Precio": 78.65,
+        "IVA": 13,
+        "CantidadDisponible": 39,
+        "Categoría": "Vitaminas"
+    },
+    {
+        "Código": "PROD004",
+        "Descripción": "Pelota resistente para perros, 10 cm de diámetro",
+        "Marca": "Hill's",
+        "Precio": 85.94,
+        "IVA": 13,
+        "CantidadDisponible": 22,
+        "Categoría": "Accesorios"
+    },
+    {
+        "Código": "PROD005",
+        "Descripción": "Bandeja sanitaria para gatos, 50x40 cm",
+        "Marca": "Pedigree",
+        "Precio": 75.41,
+        "IVA": 13,
+        "CantidadDisponible": 11,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD006",
+        "Descripción": "Rascador para gatos de cartón, 45 cm",
+        "Marca": "Pedigree",
+        "Precio": 66.36,
+        "IVA": 13,
+        "CantidadDisponible": 43,
+        "Categoría": "Antiparasitarios"
+    },
+    {
+        "Código": "PROD007",
+        "Descripción": "Arnés ajustable para perros medianos",
+        "Marca": "Kong",
+        "Precio": 18.8,
+        "IVA": 13,
+        "CantidadDisponible": 37,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD008",
+        "Descripción": "Kit de primeros auxilios para mascotas",
+        "Marca": "Cesar",
+        "Precio": 83.05,
+        "IVA": 13,
+        "CantidadDisponible": 26,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD009",
+        "Descripción": "Cepillo de dientes para perros, mango largo",
+        "Marca": "Whiskas",
+        "Precio": 53.64,
+        "IVA": 13,
+        "CantidadDisponible": 39,
+        "Categoría": "Medicamentos"
+    },
+    {
+        "Código": "PROD010",
+        "Descripción": "Bandeja sanitaria para gatos, 50x40 cm",
+        "Marca": "Bayer",
+        "Precio": 94.6,
+        "IVA": 13,
+        "CantidadDisponible": 38,
+        "Categoría": "Vitaminas"
+    },
+    {
+        "Código": "PROD011",
+        "Descripción": "Suplemento de calcio para reptiles, 100 g",
+        "Marca": "Frontline",
+        "Precio": 64.54,
+        "IVA": 13,
+        "CantidadDisponible": 37,
+        "Categoría": "Medicamentos"
+    },
+    {
+        "Código": "PROD012",
+        "Descripción": "Pelota resistente para perros, 10 cm de diámetro",
+        "Marca": "Cesar",
+        "Precio": 20.69,
+        "IVA": 13,
+        "CantidadDisponible": 44,
+        "Categoría": "Alimento para gatos"
+    },
+    {
+        "Código": "PROD013",
+        "Descripción": "Cepillo de dientes para perros, mango largo",
+        "Marca": "Cesar",
+        "Precio": 55.69,
+        "IVA": 13,
+        "CantidadDisponible": 22,
+        "Categoría": "Antiparasitarios"
+    },
+    {
+        "Código": "PROD014",
+        "Descripción": "Multivitamínico para perros y gatos, 30 tabletas",
+        "Marca": "Whiskas",
+        "Precio": 47.65,
+        "IVA": 13,
+        "CantidadDisponible": 45,
+        "Categoría": "Alimento para perros"
+    },
+    {
+        "Código": "PROD015",
+        "Descripción": "Manta térmica para mascotas, 60x45 cm",
+        "Marca": "Cesar",
+        "Precio": 86.66,
+        "IVA": 13,
+        "CantidadDisponible": 45,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD016",
+        "Descripción": "Spray repelente de mosquitos para perros, 250 ml",
+        "Marca": "Bayer",
+        "Precio": 8.27,
+        "IVA": 13,
+        "CantidadDisponible": 18,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD017",
+        "Descripción": "Alimento húmedo para gatos, sabor atún, 500 g",
+        "Marca": "Frontline",
+        "Precio": 43.34,
+        "IVA": 13,
+        "CantidadDisponible": 18,
+        "Categoría": "Accesorios"
+    },
+    {
+        "Código": "PROD018",
+        "Descripción": "Alimento seco para perros adultos, 20 kg",
+        "Marca": "Pedigree",
+        "Precio": 38.1,
+        "IVA": 13,
+        "CantidadDisponible": 38,
+        "Categoría": "Vitaminas"
+    },
+    {
+        "Código": "PROD019",
+        "Descripción": "Bandeja sanitaria para gatos, 50x40 cm",
+        "Marca": "Hill's",
+        "Precio": 88.96,
+        "IVA": 13,
+        "CantidadDisponible": 35,
+        "Categoría": "Alimento para gatos"
+    },
+    {
+        "Código": "PROD020",
+        "Descripción": "Kit de primeros auxilios para mascotas",
+        "Marca": "Whiskas",
+        "Precio": 53.58,
+        "IVA": 13,
+        "CantidadDisponible": 47,
+        "Categoría": "Medicamentos"
+    },
+    {
+        "Código": "PROD021",
+        "Descripción": "Juguete de cuerda para masticar, para perros",
+        "Marca": "Frontline",
+        "Precio": 60.09,
+        "IVA": 13,
+        "CantidadDisponible": 35,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD022",
+        "Descripción": "Pienso para conejos, 1 kg",
+        "Marca": "Pedigree",
+        "Precio": 71.78,
+        "IVA": 13,
+        "CantidadDisponible": 12,
+        "Categoría": "Medicamentos"
+    },
+    {
+        "Código": "PROD023",
+        "Descripción": "Cepillo de dientes para perros, mango largo",
+        "Marca": "Kong",
+        "Precio": 59.77,
+        "IVA": 13,
+        "CantidadDisponible": 23,
+        "Categoría": "Productos de aseo"
+    },
+    {
+        "Código": "PROD024",
+        "Descripción": "Comedero automático para mascotas, 3L",
+        "Marca": "Frontline",
+        "Precio": 32.93,
+        "IVA": 13,
+        "CantidadDisponible": 16,
+        "Categoría": "Accesorios"
+    },
+    {
+        "Código": "PROD025",
+        "Descripción": "Cepillo de dientes para perros, mango largo",
+        "Marca": "Kong",
+        "Precio": 15.06,
+        "IVA": 13,
+        "CantidadDisponible": 34,
+        "Categoría": "Vitaminas"
+    },
+    {
+        "Código": "PROD026",
+        "Descripción": "Correa retráctil para perros, hasta 20 kg, 5 m",
+        "Marca": "Pedigree",
+        "Precio": 71.09,
+        "IVA": 13,
+        "CantidadDisponible": 33,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD027",
+        "Descripción": "Casa para hamster con tubos, plástico",
+        "Marca": "Whiskas",
+        "Precio": 61.82,
+        "IVA": 13,
+        "CantidadDisponible": 11,
+        "Categoría": "Productos de aseo"
+    },
+    {
+        "Código": "PROD028",
+        "Descripción": "Shampoo antipulgas para perros, 500 ml",
+        "Marca": "Cesar",
+        "Precio": 70.74,
+        "IVA": 13,
+        "CantidadDisponible": 15,
+        "Categoría": "Antiparasitarios"
+    },
+    {
+        "Código": "PROD029",
+        "Descripción": "Collar antiparasitario para perro grande, efecto 8 meses",
+        "Marca": "Hill's",
+        "Precio": 49.74,
+        "IVA": 13,
+        "CantidadDisponible": 34,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD030",
+        "Descripción": "Spray repelente de mosquitos para perros, 250 ml",
+        "Marca": "Kong",
+        "Precio": 86.63,
+        "IVA": 13,
+        "CantidadDisponible": 17,
+        "Categoría": "Alimento para gatos"
+    },
+    {
+        "Código": "PROD031",
+        "Descripción": "Pienso para conejos, 1 kg",
+        "Marca": "Bayer",
+        "Precio": 59.78,
+        "IVA": 13,
+        "CantidadDisponible": 41,
+        "Categoría": "Antiparasitarios"
+    },
+    {
+        "Código": "PROD032",
+        "Descripción": "Correa retráctil para perros, hasta 20 kg, 5 m",
+        "Marca": "Cesar",
+        "Precio": 92.07,
+        "IVA": 13,
+        "CantidadDisponible": 26,
+        "Categoría": "Antiparasitarios"
+    },
+    {
+        "Código": "PROD033",
+        "Descripción": "Rascador para gatos de cartón, 45 cm",
+        "Marca": "Hill's",
+        "Precio": 23.66,
+        "IVA": 13,
+        "CantidadDisponible": 37,
+        "Categoría": "Productos de aseo"
+    },
+    {
+        "Código": "PROD034",
+        "Descripción": "Vestido para perros pequeños, diseño floral",
+        "Marca": "Frontline",
+        "Precio": 81.11,
+        "IVA": 13,
+        "CantidadDisponible": 32,
+        "Categoría": "Vitaminas"
+    },
+    {
+        "Código": "PROD035",
+        "Descripción": "Rascador para gatos de cartón, 45 cm",
+        "Marca": "Whiskas",
+        "Precio": 21.45,
+        "IVA": 13,
+        "CantidadDisponible": 20,
+        "Categoría": "Medicamentos"
+    },
+    {
+        "Código": "PROD036",
+        "Descripción": "Shampoo antipulgas para perros, 500 ml",
+        "Marca": "Pedigree",
+        "Precio": 61.73,
+        "IVA": 13,
+        "CantidadDisponible": 14,
+        "Categoría": "Antiparasitarios"
+    },
+    {
+        "Código": "PROD037",
+        "Descripción": "Comida para peces tropicales, 250 g",
+        "Marca": "Hill's",
+        "Precio": 82.12,
+        "IVA": 13,
+        "CantidadDisponible": 24,
+        "Categoría": "Medicamentos"
+    },
+    {
+        "Código": "PROD038",
+        "Descripción": "Limpiador de oídos para mascotas, 150 ml",
+        "Marca": "Frontline",
+        "Precio": 37.71,
+        "IVA": 13,
+        "CantidadDisponible": 45,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD039",
+        "Descripción": "Collar antiparasitario para perro grande, efecto 8 meses",
+        "Marca": "Cesar",
+        "Precio": 71.49,
+        "IVA": 13,
+        "CantidadDisponible": 40,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD040",
+        "Descripción": "Vestido para perros pequeños, diseño floral",
+        "Marca": "Whiskas",
+        "Precio": 35.66,
+        "IVA": 13,
+        "CantidadDisponible": 10,
+        "Categoría": "Medicamentos"
+    },
+    {
+        "Código": "PROD041",
+        "Descripción": "Shampoo antipulgas para perros, 500 ml",
+        "Marca": "Pedigree",
+        "Precio": 39.89,
+        "IVA": 13,
+        "CantidadDisponible": 40,
+        "Categoría": "Vitaminas"
+    },
+    {
+        "Código": "PROD042",
+        "Descripción": "Comedero automático para mascotas, 3L",
+        "Marca": "Bayer",
+        "Precio": 59.46,
+        "IVA": 13,
+        "CantidadDisponible": 17,
+        "Categoría": "Vitaminas"
+    },
+    {
+        "Código": "PROD043",
+        "Descripción": "Cepillo de dientes para perros, mango largo",
+        "Marca": "Whiskas",
+        "Precio": 6.57,
+        "IVA": 13,
+        "CantidadDisponible": 35,
+        "Categoría": "Alimento para perros"
+    },
+    {
+        "Código": "PROD044",
+        "Descripción": "Alimento seco para perros adultos, 20 kg",
+        "Marca": "Cesar",
+        "Precio": 98.27,
+        "IVA": 13,
+        "CantidadDisponible": 10,
+        "Categoría": "Juguetes"
+    },
+    {
+        "Código": "PROD045",
+        "Descripción": "Pienso para conejos, 1 kg",
+        "Marca": "Pedigree",
+        "Precio": 88.7,
+        "IVA": 13,
+        "CantidadDisponible": 10,
+        "Categoría": "Antiparasitarios"
+    },
+    {
+        "Código": "PROD046",
+        "Descripción": "Multivitamínico para perros y gatos, 30 tabletas",
+        "Marca": "Hill's",
+        "Precio": 35.44,
+        "IVA": 13,
+        "CantidadDisponible": 49,
+        "Categoría": "Alimento para perros"
+    },
+    {
+        "Código": "PROD047",
+        "Descripción": "Antibiótico en suspensión para gatos, 250 ml",
+        "Marca": "Hill's",
+        "Precio": 53.11,
+        "IVA": 13,
+        "CantidadDisponible": 32,
+        "Categoría": "Accesorios"
+    },
+    {
+        "Código": "PROD048",
+        "Descripción": "Multivitamínico para perros y gatos, 30 tabletas",
+        "Marca": "Bayer",
+        "Precio": 70.41,
+        "IVA": 13,
+        "CantidadDisponible": 17,
+        "Categoría": "Productos de aseo"
+    },
+    {
+        "Código": "PROD049",
+        "Descripción": "Shampoo antipulgas para perros, 500 ml",
+        "Marca": "Frontline",
+        "Precio": 36.53,
+        "IVA": 13,
+        "CantidadDisponible": 21,
+        "Categoría": "Alimento para perros"
+    },
+    {
+        "Código": "PROD050",
+        "Descripción": "Suplemento de calcio para reptiles, 100 g",
+        "Marca": "Kong",
+        "Precio": 41.05,
+        "IVA": 13,
+        "CantidadDisponible": 48,
+        "Categoría": "Antiparasitarios"
+    }
+]
