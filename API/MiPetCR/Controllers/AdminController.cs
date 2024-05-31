@@ -105,7 +105,7 @@ namespace MiPetCR.Controllers
 
         }
 
-        //Metodo que permite crear una reservacion 
+        //Metodo que permite crear una reservacion *********NO FUNCIONAL**************
         //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
         [HttpPost("create_product")]
         public async Task<ActionResult<JSON_Object>> CreateProduct(ProductsPostModel producto_nuevo)
@@ -125,5 +125,171 @@ namespace MiPetCR.Controllers
             }
 
         }
+
+
+        //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
+        [HttpGet("get_all_branches")]
+        public async Task<ActionResult<JSON_Object>> GetBranches()
+        {
+            JSON_Object json = new JSON_Object("error", null);
+
+            try
+            {
+                //El metodo retorna una estructura de tipo DataTable que contiene la informacion de la 
+                //ultima reservacion insertada
+                DataTable all_branches = DatabaseConnection.GetBranches();
+
+                List<BranchGetModel> all_branches_list = new List<BranchGetModel>();
+                foreach (DataRow row in all_branches.Rows)
+                {
+
+                    BranchGetModel branch_db = new BranchGetModel();
+                    int id_int = Convert.ToInt32(row["id"].ToString());
+                    //int telefono_int = Convert.ToInt32(row["telefono"].ToString());
+
+
+                    branch_db.branch_id = id_int;
+                    branch_db.provincia = row["provincia"].ToString();
+                    branch_db.canton = row["canton"].ToString();
+                    branch_db.distrito = row["distrito"].ToString();
+                    branch_db.domicilio = row["domicilio"].ToString();
+
+                    all_branches_list.Add(branch_db);
+
+                }
+
+                json.status = "ok";
+                json.result = all_branches_list;
+                return Ok(json);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(json);
+            }
+
+
+        }
+
+        //Metodo que permite crear una reservacion 
+        //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
+        [HttpPost("create_branch")]
+        public async Task<ActionResult<JSON_Object>> CreateBranch(BranchPostModel branch_nuevo)
+        {
+            JSON_Object json = new JSON_Object("ok", null);
+            //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
+            bool var = DatabaseConnection.CreateBranch(branch_nuevo);
+            Console.WriteLine(var);
+            if (var)
+            {
+                return Ok(json);
+            }
+            else
+            {
+                json.status = "error";
+                return BadRequest(json);
+            }
+
+        }
+
+
+        //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
+        [HttpPost("get_all_products_order")]
+        public async Task<ActionResult<JSON_Object>> GetOrders(OrdenIDModel ordenid)
+        {
+            JSON_Object json = new JSON_Object("error", null);
+
+            try
+            {
+                //El metodo retorna una estructura de tipo DataTable que contiene la informacion de la 
+                //ultima reservacion insertada
+                DataTable all_products_ord = DatabaseConnection.GetOrders(ordenid);
+
+                List<ProductsOrderGetModel> all_products_order_list = new List<ProductsOrderGetModel>();
+                foreach (DataRow row in all_products_ord.Rows)
+                {
+
+                    ProductsOrderGetModel products_ord_db = new ProductsOrderGetModel();
+                    //int id_int = Convert.ToInt32(row["id"].ToString());
+                    //int telefono_int = Convert.ToInt32(row["telefono"].ToString());
+
+
+                    //products_ord_db.branch_id = id_int;
+                    products_ord_db.cod_product = row["cod_producto"].ToString();
+                    products_ord_db.descripcion = row["descripcion"].ToString();
+                    //branch_db.distrito = row["distrito"].ToString();
+                    //branch_db.domicilio = row["domicilio"].ToString();
+
+                    all_products_order_list.Add(products_ord_db);
+
+                }
+
+                json.status = "ok";
+                json.result = all_products_order_list;
+                return Ok(json);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(json);
+            }
+
+
+        }
+
+        //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
+        [HttpGet("get_all_files")]
+        public async Task<ActionResult<JSON_Object>> GetFiles()
+        {
+            JSON_Object json = new JSON_Object("error", null);
+
+            try
+            {
+                //El metodo retorna una estructura de tipo DataTable que contiene la informacion de la 
+                //ultima reservacion insertada
+                DataTable all_files = DatabaseConnection.GetFiles();
+
+                List<FilesGetModel> all_files_list = new List<FilesGetModel>();
+                foreach (DataRow row in all_files.Rows)
+                {
+
+                    FilesGetModel files_db = new FilesGetModel();
+                    //int id_int = Convert.ToInt32(row["id"].ToString());
+                    //int telefono_int = Convert.ToInt32(row["telefono"].ToString());
+
+
+
+                    files_db.nombre_dueno = row["nombre"].ToString();
+                    files_db.nombre_mascota = row["nombre"].ToString();
+                    files_db.especie = row["especie"].ToString();
+                    files_db.Raza = row["Raza"].ToString();
+                    files_db.descripcion = row["Tratamiento"].ToString();
+                    files_db.fecha = row["fecha"].ToString();
+                    files_db.detalles = row["detalles"].ToString();
+
+                    all_files_list.Add(files_db);
+
+                }
+
+                json.status = "ok";
+                json.result = all_files_list;
+                return Ok(json);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(json);
+            }
+
+
+        }
+
+
     }
 }

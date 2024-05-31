@@ -151,6 +151,131 @@ namespace MiPetCR.DataBase_Resources
 
         }
 
+        //Metodo que permite obtener todos los usuarios
+        public static DataTable GetBranches()
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarSucursales]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //Metodo que permite obtener todos los usuarios ******No funcional
+        public static DataTable GetOrders(OrdenIDModel ordenid)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarProductosOrden]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_orden", SqlDbType.Int).Value = ordenid.order_id;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //Metodo que permite obtener todos los usuarios
+        public static DataTable GetFiles()
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarExpedientes]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool CreateBranch(BranchPostModel branch_nuevo)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_InsertarSucursales]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                //cmd.Parameters.AddWithValue("@cedula", SqlDbType.Int).Value = client_nuevo.cedula;
+                cmd.Parameters.AddWithValue("@provincia", SqlDbType.VarChar).Value = branch_nuevo.provincia;
+                cmd.Parameters.AddWithValue("@canton", SqlDbType.VarChar).Value = branch_nuevo.canton;
+                cmd.Parameters.AddWithValue("@distrito", SqlDbType.VarChar).Value = branch_nuevo.distrito;
+                cmd.Parameters.AddWithValue("@domicilio", SqlDbType.VarChar).Value = branch_nuevo.domicilio;
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
         //Metodo para hacer login en cualquier vista de la web app
         //Retorna un datatable con la informacion del usuario
         public static bool Login(Credentials login_credentials)
