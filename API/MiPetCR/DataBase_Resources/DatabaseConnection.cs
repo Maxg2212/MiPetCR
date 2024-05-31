@@ -79,6 +79,78 @@ namespace MiPetCR.DataBase_Resources
             }
         }
 
+
+        //Metodo que permite obtener todos los expedientes
+        public static DataTable GetProducts()
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarProductos]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool CreateProduct(ProductsPostModel producto_nuevo)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_InsertarProductos]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@codigo", SqlDbType.VarChar).Value = producto_nuevo.codigo;
+                cmd.Parameters.AddWithValue("@descripcion", SqlDbType.VarChar).Value = producto_nuevo.descripcion;
+                cmd.Parameters.AddWithValue("@marca", SqlDbType.VarChar).Value = producto_nuevo.marca;
+                cmd.Parameters.AddWithValue("@precio", SqlDbType.Money).Value = producto_nuevo.precio;
+                cmd.Parameters.AddWithValue("@iva", SqlDbType.Float).Value = producto_nuevo.iva;
+                cmd.Parameters.AddWithValue("@cantidad_disponible", SqlDbType.Int).Value = producto_nuevo.cantidad_disponible;
+                cmd.Parameters.AddWithValue("@categoria", SqlDbType.VarChar).Value = producto_nuevo.categoria;
+                cmd.Parameters.AddWithValue("@proc_med", SqlDbType.Bit).Value = producto_nuevo.proc_med;
+                //cmd.Parameters.AddWithValue("@nombre", SqlDbType.VarChar).Value = producto_nuevo.nombre;
+
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
         //Metodo para hacer login en cualquier vista de la web app
         //Retorna un datatable con la informacion del usuario
         public static bool Login(Credentials login_credentials)
@@ -226,5 +298,70 @@ namespace MiPetCR.DataBase_Resources
                 conn.Close();
             }
         }
+
+        //Metodo que permite obtener historial medico
+        public static DataTable GetHistory(MascotaIDModel mascota_id)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarHistorialMedico]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_mascota", SqlDbType.Int).Value = mascota_id.id;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //Metodo que permite obtener historial compras
+        public static DataTable GetPurchases(Mascota_Dueno cedula_usuario)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarCompras]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@user_ced", SqlDbType.Int).Value = cedula_usuario.cedula;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        
+
     }
 }
