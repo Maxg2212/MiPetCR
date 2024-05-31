@@ -47,8 +47,14 @@ export class LoginClientService {
    * @link BD_ULR + auth_client
    */
   loginClient(form : LoginClientI): Observable<ResponseTemplateI>{
-    let direccion = this.BD_URL + 'auth_client';
-    return this.http.post<ResponseTemplateI>(direccion, form).pipe(
+    let direccion = this.BD_URL + 'auth_user';
+       // Crear una copia del form y agregar el campo "resultado"
+       const payload = {
+        ...form,
+        resultado: true
+      };
+    console.log(payload);
+    return this.http.post<ResponseTemplateI>(direccion, payload).pipe(
       catchError(this.handleError)
       );
   }

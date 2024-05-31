@@ -18,11 +18,11 @@
                         <form [formGroup]="clientForm" (ngSubmit)="clientLogin(clientForm.getRawValue())">
                     
                             <div class="mb-4 mx-4">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="correo" class="form-label">Email</label>
     
                                 <input 
-                                    type="email" 
-                                    formControlName="email"
+                                    type="correo" 
+                                    formControlName="correo"
                                     class="form-control" 
                                     placeholder="example@domain.com" 
                                     autofocus />
@@ -30,12 +30,12 @@
                             </div>
                 
                             <div class="mb-4 mx-4">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="contrasena" class="form-label">Password</label>
                                 <input 
-                                    type="password" 
-                                    formControlName="password"
+                                    type="contrasena" 
+                                    formControlName="contrasena"
                                     class="form-control" 
-                                    placeholder="password" />
+                                    placeholder="contrasena" />
                             </div>
     
                             <div class="row center">

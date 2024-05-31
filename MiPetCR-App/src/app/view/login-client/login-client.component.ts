@@ -20,8 +20,8 @@ export class LoginClientComponent {
    * @version 1.0
    */
   clientForm = new FormGroup({
-    email: new FormControl('', { nonNullable: true }),
-    password: new FormControl('', { nonNullable: true }),
+    correo: new FormControl('', { nonNullable: true }),
+    contrasena: new FormControl('', { nonNullable: true }),
   });
 
   /**

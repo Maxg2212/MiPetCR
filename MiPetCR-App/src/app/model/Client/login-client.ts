@@ -4,6 +4,6 @@
 // }
 
 export interface LoginClientI {
-    email: string;
-    password: string;
+    correo: string;
+    contrasena: string;
 }
