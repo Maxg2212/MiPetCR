@@ -12,10 +12,10 @@
                     <div class="col-12 ">
 
                         <div class="h2 text-center">
-                            Login Cliente
+                            Login Veterinario
                         </div>
 
-                        <form [formGroup]="clientForm" (ngSubmit)="clientLogin(clientForm.getRawValue())">
+                        <form [formGroup]="clientForm" (ngSubmit)="veterinarioLogin(clientForm.getRawValue())">
                     
                             <div class="mb-4 mx-4">
                                 <label for="correo" class="form-label">Email</label>
@@ -41,9 +41,6 @@
                             <div class="row center">
                                 
                                 <button class="btn btn-success" type="submit">Login</button>
-                                <div class="py-1"></div>
-                                <a class="btn btn-success" type="submit" href="/register-client">Sign Up</a>
-                                
                             </div>
                 
                         </form>

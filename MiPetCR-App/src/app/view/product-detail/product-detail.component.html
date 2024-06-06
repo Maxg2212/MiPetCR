@@ -1,0 +1,11 @@
+<body>
+    <app-navbar></app-navbar>
+
+    <div *ngIf="product">
+        <h1>{{ product.descripcion }}</h1>
+        <p>Marca: {{ product.marca }}</p>
+        <p>Precio: {{ product.precio }}</p>
+        <!-- Agrega más detalles del producto según sea necesario -->
+    </div>
+      
+</body>

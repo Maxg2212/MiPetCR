@@ -12,6 +12,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { StoreComponent } from './view/store/store.component';
 import { RegisterClientComponent } from './view/register-client/register-client.component';
+import { LoginVeterinarioComponent } from './view/login-veterinario/login-veterinario.component';
+import { LoginAdminComponent } from './view/login-admin/login-admin.component';
+import { ProductDetailComponent } from './view/product-detail/product-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +25,10 @@ import { RegisterClientComponent } from './view/register-client/register-client.
     LoginClientComponent,
     NavbarComponent,
     StoreComponent,
-    RegisterClientComponent
+    RegisterClientComponent,
+    LoginVeterinarioComponent,
+    LoginAdminComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +49,20 @@ import { RegisterClientComponent } from './view/register-client/register-client.
         component: RegisterClientComponent 
       },
       { 
+        path: 'login-veterinario', 
+        component: LoginVeterinarioComponent 
+      },
+      { 
+        path: 'login-admin', 
+        component: LoginAdminComponent 
+      },
+      { 
         path: 'store', 
         component: StoreComponent 
+      },
+      { 
+        path: 'product/:id', 
+        component: ProductDetailComponent 
       }
     ]),
   ],
