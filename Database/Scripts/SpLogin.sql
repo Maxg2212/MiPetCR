@@ -19,7 +19,7 @@ RETURNS VARCHAR(64)
 AS
 BEGIN
     DECLARE @contrasenaSHA256 VARCHAR(64);
-    SET @contrasenaSHA256 = CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @contrasena), 2);
+    SET @contrasenaSHA256 = CONVERT(VARCHAR(64), HASHBYTES('MD5', @contrasena), 2);
     RETURN @contrasenaSHA256;
 END;
 GO
