@@ -48,3 +48,9 @@ BEGIN
 END
 GO
 ----------------------------------------------------------------------------
+
+-- >>> Store Procedure para ver el historial de compras de un usuario(ya implementado en SpAdmin) (up_RecuperarHistorialCompras) <<<
+
+-- >>> Store Procedure para insertar citas medicas (ya implementado en SpAdmin) (up_InsertarCita) <<<
+
+-- >>> Store Procedure para insertar una orden de compra a un usuario (ya implementado en SpCliente) (up_InsertarOrden)<<<
