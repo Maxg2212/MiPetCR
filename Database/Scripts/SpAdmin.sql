@@ -187,6 +187,8 @@ END
 GO
 ----------------------------------------------------------------------------
 
+-- Procedures segundo sprint
+
 -- >>> Store Procedure para recuperar todas las citas <<<
 IF OBJECT_ID(N'dbo.up_RecuperarCitas', N'P') IS NOT NULL
     DROP PROCEDURE dbo.up_RecuperarCitas;
@@ -216,8 +218,30 @@ CREATE PROCEDURE up_InsertarCita
     @hora_salida TIME
 AS
 BEGIN
-    INSERT INTO CitaMedica (user_ced, id_veterinaria, id_mascota, fecha, hora_ingreso, hora_salida)
-    VALUES (@user_ced, @id_veterinaria, @id_mascota, @fecha, @hora_ingreso, @hora_salida);
+    -- Verificar si hay un conflicto de horarios en la misma fecha y veterinaria
+    IF EXISTS (
+        SELECT 1
+        FROM CitaMedica
+        WHERE 
+            id_veterinaria = @id_veterinaria AND
+            fecha = @fecha AND
+            (
+                (hora_ingreso <= @hora_ingreso AND hora_salida > @hora_ingreso) OR
+                (hora_ingreso < @hora_salida AND hora_salida >= @hora_salida) OR
+                (@hora_ingreso <= hora_ingreso AND @hora_salida > hora_ingreso) OR
+                (@hora_ingreso < hora_salida AND @hora_salida >= hora_salida)
+            )
+    )
+    BEGIN
+        -- Si hay conflicto, retornar un mensaje de error
+        RAISERROR ('Ya existe una cita en este horario.', 16, 1);
+    END
+    ELSE
+    BEGIN
+        -- Si no hay conflicto, insertar la nueva cita
+        INSERT INTO CitaMedica (user_ced, id_veterinaria, id_mascota, fecha, hora_ingreso, hora_salida)
+        VALUES (@user_ced, @id_veterinaria, @id_mascota, @fecha, @hora_ingreso, @hora_salida);
+    END
 END
 GO
 ----------------------------------------------------------------------------
