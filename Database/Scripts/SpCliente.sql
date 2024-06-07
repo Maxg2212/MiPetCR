@@ -101,5 +101,36 @@ GO
 
 -- >>> Store Procedure para ver los productos comprados en una orden (ya implementado en SpAdmin) (up_RecuperarProductosOrden) <<<
 
+-- >>> Store Procedure obtener todas las citas (ya implementado en SpAdmin) (up_RecuperarCitas) <<<
 
+-- >>> Store Procedure para insertar una nueva cita medica (ya implementado en SpAdmin) (up_InsertarCita) <<<
 
+-- >>> Store Procedure para recuperar su información personal <<<
+IF OBJECT_ID(N'dbo.up_RecuperarInfoPersonal', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.up_RecuperarInfoPersonal;
+GO
+CREATE PROCEDURE up_RecuperarInfoPersonal
+    @ced NUMERIC(10)
+AS
+BEGIN
+    SELECT cedula, nombre, correo, telefono
+    FROM Usuario
+    WHERE ced = @ced
+END
+GO
+----------------------------------------------------------------------------
+
+-- >>> Store Procedure para editar su información personal <<<
+IF OBJECT_ID(N'dbo.up_EditarInfoPersonal', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.up_EditarInfoPersonal;
+GO
+CREATE PROCEDURE up_EditarInfoPersonal
+    @ced NUMERIC(10),
+    @nombre VARCHAR(50),
+    @correo VARCHAR(50),
+    @telefono NUMERIC(8)
+AS
+BEGIN
+    UPDATE Usuario SET nombre = @nombre, correo = @correo, telefono = @telefono
+    WHERE cedula = @ced
+END
