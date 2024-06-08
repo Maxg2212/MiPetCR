@@ -23,7 +23,10 @@ export class ProductDetailComponent {
    */
     ngOnInit(): void {
       const productIndex = this.route.snapshot.paramMap.get('id');
-      this.updateProducts();
+      if (productIndex !== null) {
+        this.productIndex = +productIndex; // Convierte 'productIndex' a número
+        this.updateProducts();
+      }
     }
  
 
