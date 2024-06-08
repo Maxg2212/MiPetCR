@@ -186,3 +186,116 @@ BEGIN
 END
 GO
 ----------------------------------------------------------------------------
+
+-- Procedures segundo sprint
+
+-- >>> Store Procedure para recuperar todas las citas <<<
+IF OBJECT_ID(N'dbo.up_RecuperarCitas', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.up_RecuperarCitas;
+GO
+CREATE PROCEDURE up_RecuperarCitas
+AS
+BEGIN
+    SELECT A.id, B.nombre, C.nombre AS Mascota, D.provincia, D.canton, A.fecha, A.hora_ingreso, A.hora_salida
+    FROM CitaMedica AS A 
+         JOIN Usuario AS B ON A.user_ced = B.cedula
+         JOIN Mascota AS C ON A.id_mascota = C.id
+         JOIN Veterinaria AS D ON A.id_veterinaria = D.id
+END
+GO
+----------------------------------------------------------------------------
+
+-- >>> Store Procedure para ingresar una cita <<<
+IF OBJECT_ID(N'dbo.up_InsertarCita', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.up_InsertarCita;
+GO
+CREATE PROCEDURE up_InsertarCita
+    @user_ced NUMERIC(10),
+    @id_veterinaria NUMERIC(1),
+    @id_mascota NUMERIC,
+    @fecha DATE,
+    @hora_ingreso TIME,
+    @hora_salida TIME
+AS
+BEGIN
+    -- Verificar si hay un conflicto de horarios en la misma fecha y veterinaria
+    IF EXISTS (
+        SELECT 1
+        FROM CitaMedica
+        WHERE 
+            id_veterinaria = @id_veterinaria AND
+            fecha = @fecha AND
+            (
+                (hora_ingreso <= @hora_ingreso AND hora_salida > @hora_ingreso) OR
+                (hora_ingreso < @hora_salida AND hora_salida >= @hora_salida) OR
+                (@hora_ingreso <= hora_ingreso AND @hora_salida > hora_ingreso) OR
+                (@hora_ingreso < hora_salida AND @hora_salida >= hora_salida)
+            )
+    )
+    BEGIN
+        -- Si hay conflicto, retornar un mensaje de error
+        RAISERROR ('Ya existe una cita en este horario.', 16, 1);
+    END
+    ELSE
+    BEGIN
+        -- Si no hay conflicto, insertar la nueva cita
+        INSERT INTO CitaMedica (user_ced, id_veterinaria, id_mascota, fecha, hora_ingreso, hora_salida)
+        VALUES (@user_ced, @id_veterinaria, @id_mascota, @fecha, @hora_ingreso, @hora_salida);
+    END
+END
+GO
+----------------------------------------------------------------------------
+
+-- >>> Store Procedure para editar una cita <<<
+IF OBJECT_ID(N'dbo.up_EditarCita', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.up_EditarCita;
+GO
+CREATE PROCEDURE up_EditarCita
+    @id NUMERIC,
+    @user_ced NUMERIC(10),
+    @id_veterinaria NUMERIC(1),
+    @id_mascota NUMERIC,
+    @fecha DATE,
+    @hora_ingreso TIME,
+    @hora_salida TIME
+AS
+BEGIN
+    UPDATE CitaMedica SET 
+        user_ced = @user_ced, 
+        id_veterinaria = @id_veterinaria, 
+        id_mascota = @id_mascota, 
+        fecha = @fecha, 
+        hora_ingreso = @hora_ingreso, 
+        hora_salida = @hora_salida
+    WHERE id = @id;
+END
+GO
+----------------------------------------------------------------------------
+
+-- >>> Store Procedure para eliminar una cita <<<
+IF OBJECT_ID(N'dbo.up_EliminarCita', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.up_EliminarCita;
+GO
+CREATE PROCEDURE up_EliminarCita
+    @id NUMERIC
+AS
+BEGIN
+    DELETE FROM CitaMedica WHERE id = @id
+END
+GO
+----------------------------------------------------------------------------
+
+-- >>> Store Procedure para ver el historial de compra de un usuario <<<
+IF OBJECT_ID(N'dbo.up_RecuperarHistorialCompras', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.up_RecuperarHistorialCompras;
+GO
+CREATE PROCEDURE up_RecuperarHistorialCompras
+    @user_ced NUMERIC(10)
+AS
+BEGIN
+    SELECT A.id, A.fecha, A.hora, A.metodo_pago
+    FROM OrdenCompra AS A
+    WHERE A.user_ced = @user_ced
+END
+GO
+----------------------------------------------------------------------------
