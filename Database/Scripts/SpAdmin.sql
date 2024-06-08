@@ -74,8 +74,8 @@ CREATE PROCEDURE up_InsertarProductos
     @proc_med BIT
 AS
 BEGIN
-    INSERT INTO TratamientoProducto(codigo, descripcion, marca, precio, iva, cantidad_disponible, categoria)
-    VALUES(@codigo, @descripcion, @marca, @precio, @iva, @cantidad_disponible, @categoria)
+    INSERT INTO TratamientoProducto(codigo, descripcion, marca, precio, iva, cantidad_disponible, categoria, proc_med)
+    VALUES(@codigo, @descripcion, @marca, @precio, @iva, @cantidad_disponible, @categoria, @proc_med)
 END
 GO
 ----------------------------------------------------------------------------
