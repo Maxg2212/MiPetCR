@@ -115,7 +115,7 @@ AS
 BEGIN
     SELECT cedula, nombre, correo, telefono
     FROM Usuario
-    WHERE ced = @ced
+    WHERE cedula = @ced
 END
 GO
 ----------------------------------------------------------------------------
