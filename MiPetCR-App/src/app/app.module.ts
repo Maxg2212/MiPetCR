@@ -15,6 +15,9 @@ import { RegisterClientComponent } from './view/register-client/register-client.
 import { LoginVeterinarioComponent } from './view/login-veterinario/login-veterinario.component';
 import { LoginAdminComponent } from './view/login-admin/login-admin.component';
 import { ProductDetailComponent } from './view/product-detail/product-detail.component';
+import { ClientHubComponent } from './view/client-hub/client-hub.component';
+import { SidebarClienteComponent } from './view/sidebar-cliente/sidebar-cliente.component';
+import { ClientStoreComponent } from './view/client-store/client-store.component';
 
 
 @NgModule({
@@ -29,6 +32,9 @@ import { ProductDetailComponent } from './view/product-detail/product-detail.com
     LoginVeterinarioComponent,
     LoginAdminComponent,
     ProductDetailComponent,
+    ClientHubComponent,
+    SidebarClienteComponent,
+    ClientStoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +69,14 @@ import { ProductDetailComponent } from './view/product-detail/product-detail.com
       { 
         path: 'product/:id', 
         component: ProductDetailComponent 
+      },
+      { 
+        path: 'client-hub', 
+        component: ClientHubComponent 
+      },
+      { 
+        path: 'client-store', 
+        component: ClientStoreComponent 
       }
     ]),
   ],

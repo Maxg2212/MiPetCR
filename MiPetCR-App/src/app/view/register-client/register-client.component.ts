@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AddClientService } from 'src/app/controller/Client/addClient/add-client.service';
 import { AddClientI } from 'src/app/model/Client/add-client';
+import { ResponseTemplateI } from 'src/app/model/responseTemplate';
 
 @Component({
   selector: 'app-register-client',
@@ -18,7 +20,7 @@ export class RegisterClientComponent {
     telefono: new FormControl(0, Validators.required),
   });
 
-  constructor( private api : AddClientService ) { }
+  constructor( private api : AddClientService,  private router : Router) { }
 
   /**
    * @description This method is used to create a new client
@@ -29,7 +31,22 @@ export class RegisterClientComponent {
     console.log(form);
 
     this.api.addClient(form).subscribe(data => {
-      alert('Client created successfully!');
+      let dataResponse: ResponseTemplateI = data;
+      
+      if (JSON.parse(JSON.stringify(dataResponse.status)) == 'ok') {
+        console.log(dataResponse.status);
+        sessionStorage.setItem('client', JSON.stringify(data.result));
+        console.log(data);
+        alert('Usuario creado correctamente!');
+        this.router.navigate(['/login-client']);
+      } 
+      else {
+        console.log(dataResponse.status);
+        alert('Ingresa los datos correctos');
+        console.log(data);
+      }
+
+
     });
   }
   

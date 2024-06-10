@@ -37,7 +37,7 @@ export class LoginClientComponent {
         console.log(dataResponse.status);
         sessionStorage.setItem('client', JSON.stringify(data.result));
         console.log(data);
-        this.router.navigate(['/store']);
+        this.router.navigate(['/client-hub']);
       } 
       else {
         console.log(dataResponse.status);
