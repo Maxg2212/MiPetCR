@@ -1,11 +1,14 @@
 <body>
     <app-navbar></app-navbar>
+    
+    <div class="container py-5">
 
-    <div *ngIf="product">
-        <h1>{{ product.descripcion }}</h1>
-        <p>Marca: {{ product.marca }}</p>
-        <p>Precio: {{ product.precio }}</p>
-        <!-- Agrega más detalles del producto según sea necesario -->
+        <div *ngIf="product" class="card">
+            <div class="card-body">
+            <p>{{ product.descripcion }}</p>
+            <p>Marca: {{ product.marca }}</p>
+            <p>Precio: {{ product.precio }}</p>
+            </div>
+        </div>
     </div>
-      
 </body>
