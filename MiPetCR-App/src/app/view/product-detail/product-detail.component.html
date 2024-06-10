@@ -1,6 +1,36 @@
 <body>
-    <app-navbar></app-navbar>
-    
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+          <ul class="navbar-nav text-light">
+  
+            <li><a class="nav-link" href="/client-hub"><div class="py-1">Home</div></a></li>
+            <li><a class="nav-link" href="/client-store"><div class="py-1">Shop</div></a></li>
+          </ul>
+        </div>
+      </div>
+  
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+  
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          
+          </button>
+  
+          <div class="col">
+            <a class="navbar-brand text-white" href="#">MiPetCR</a>
+          </div>
+          <div class="col-0">
+            <button class="btn btn-outline-light">Carrito</button>
+          </div>
+  
+          
+  
+        
+        </div>
+      
+      </nav>
+
     <div class="container py-5">
 
         <div *ngIf="product" class="card">
