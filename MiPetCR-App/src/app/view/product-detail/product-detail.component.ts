@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetallProductsService } from 'src/app/controller/Admin/getall-products.service';
 import { ProductI } from 'src/app/model/Admin/get-products';
@@ -8,7 +8,7 @@ import { ProductI } from 'src/app/model/Admin/get-products';
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnInit{
   products : ProductI[] = [];
   product: ProductI | undefined;
   productIndex = 0;

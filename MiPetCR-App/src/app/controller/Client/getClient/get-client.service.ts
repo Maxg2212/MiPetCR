@@ -1,23 +1,24 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { LoginClientI } from 'src/app/model/Client/login-client';
-import { ResponseTemplateI } from 'src/app/model/responseTemplate';
+import { GetClientI } from 'src/app/model/Client/get-client';
+import { ResponseTemplateClient } from 'src/app/model/responseTemplate';
 import { BD_URL } from 'src/app/setValues';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginClientService {
+export class GetClientService {
 
   BD_URL = BD_URL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {  }
 
-   /**
+  /**
    * @description Error handler for the loginClient method
    */
-   private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       
       alert('A client-side or network error occurred.') ;
@@ -38,6 +39,7 @@ export class LoginClientService {
       console.error(`Backend returned code ${error.status}, body was: `, error.error);
     
     }
+
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
@@ -45,16 +47,12 @@ export class LoginClientService {
    * @description Sends a POST request to the server to login a client using the link
    * @link BD_ULR + auth_client
    */
-  loginClient(form : LoginClientI): Observable<ResponseTemplateI>{
-    let direccion = this.BD_URL + 'auth_user';
-       // Crear una copia del form y agregar el campo "resultado"
-       const payload = {
-        ...form,
-        resultado: true
-      };
-    console.log(payload);
-    return this.http.post<ResponseTemplateI>(direccion, payload).pipe(
+  getClient(form : GetClientI): Observable<ResponseTemplateClient>{
+    let direccion = this.BD_URL + 'get_user_info_with_correo';
+    console.log(form);
+    return this.http.post<ResponseTemplateClient>(direccion, form).pipe(
       catchError(this.handleError)
       );
   }
+  
 }

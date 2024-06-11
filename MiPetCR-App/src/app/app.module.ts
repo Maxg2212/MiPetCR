@@ -28,6 +28,8 @@ import { VeterinarioBusquedaDuenoComponent } from './view/veterinario-busqueda-d
 import { VeterinarioEditarExpendienteComponent } from './view/veterinario-editar-expendiente/veterinario-editar-expendiente.component';
 import { VeterinarioVerHistorialCompraComponent } from './view/veterinario-ver-historial-compra/veterinario-ver-historial-compra.component';
 import { VeterinarioConsultarExpedienteMedicoComponent } from './view/veterinario-consultar-expediente-medico/veterinario-consultar-expediente-medico.component';
+import { EditProfileComponent } from './view/edit-profile/edit-profile.component';
+import { ViewPetsComponent } from './view/view-pets/view-pets.component';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { VeterinarioConsultarExpedienteMedicoComponent } from './view/veterinari
     VeterinarioEditarExpendienteComponent,
     VeterinarioVerHistorialCompraComponent,
     VeterinarioConsultarExpedienteMedicoComponent,
+    EditProfileComponent,
+    ViewPetsComponent,
   ],
   imports: [
     BrowserModule,
@@ -137,6 +141,14 @@ import { VeterinarioConsultarExpedienteMedicoComponent } from './view/veterinari
       { 
         path: 'view-cart', 
         component: ViewCartComponent 
+      },
+      { 
+        path: 'edit-profile', 
+        component: EditProfileComponent 
+      },
+      { 
+        path: 'view-pets', 
+        component: ViewPetsComponent 
       }
     ]),
   ],

@@ -35,7 +35,7 @@ export class LoginClientComponent {
       
       if (JSON.parse(JSON.stringify(dataResponse.status)) == 'ok') {
         console.log(dataResponse.status);
-        sessionStorage.setItem('client', JSON.stringify(data.result));
+        sessionStorage.setItem('correo', JSON.stringify(form.correo));
         console.log(data);
         this.router.navigate(['/client-hub']);
       } 

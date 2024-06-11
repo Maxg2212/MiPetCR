@@ -1,3 +1,51 @@
 <body>
     <app-sidebar-cliente></app-sidebar-cliente>
+
+    <div class="container py-4">
+        <div class="row py-4">
+
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-4 text-center">
+  
+              <h2> Welcome back {{ client?.nombre }}</h2>
+            </div>
+        </div>
+
+        <div class="col-12 py-3">
+
+            <div class="card cardColor">
+                <div class="card-body">
+                  <p class="card-text"> Cédula : {{ client?.cedula}} </p> 
+                </div>
+            </div>
+        </div>
+
+        <div class=" col-12 py-3">
+
+            <div class="card cardColor">
+                <div class="card-body">
+                  <p class="card-text"> Email: {{ correo}} </p> 
+                </div>
+              </div>
+
+        </div>
+
+        <div class="col-12 py-3">
+
+            <div class="card cardColor">
+                <div class="card-body">
+                  <p class="card-text"> Teléfono: {{ client?.telefono}} </p> 
+                </div>
+              </div>
+
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-auto p-2">
+            <a href="/edit-profile" type="button" class="btn btn-primary me-2">Editar Perfil</a>
+          </div>
+          <div class="col-auto p-2">
+            <a href="/view-pets" type="button" class="btn btn-primary">Ver Mascotas</a>
+          </div>
+        </div>
+        
+    </div>
 </body>
