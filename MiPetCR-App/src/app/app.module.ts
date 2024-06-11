@@ -18,6 +18,10 @@ import { ProductDetailComponent } from './view/product-detail/product-detail.com
 import { ClientHubComponent } from './view/client-hub/client-hub.component';
 import { SidebarClienteComponent } from './view/sidebar-cliente/sidebar-cliente.component';
 import { ClientStoreComponent } from './view/client-store/client-store.component';
+import { VeterinarioMenuComponent } from './view/veterinario-menu/veterinario-menu.component';
+import { VeterinarioRegistrarVisitaComponent } from './view/veterinario-registrar-visita/veterinario-registrar-visita.component';
+import { VeterinarioCobrarComponent } from './view/veterinario-cobrar/veterinario-cobrar.component';
+import { VeterinarioCrearCitaComponent } from './view/veterinario-crear-cita/veterinario-crear-cita.component';
 
 
 @NgModule({
@@ -35,6 +39,10 @@ import { ClientStoreComponent } from './view/client-store/client-store.component
     ClientHubComponent,
     SidebarClienteComponent,
     ClientStoreComponent,
+    VeterinarioMenuComponent,
+    VeterinarioRegistrarVisitaComponent,
+    VeterinarioCobrarComponent,
+    VeterinarioCrearCitaComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +69,22 @@ import { ClientStoreComponent } from './view/client-store/client-store.component
       { 
         path: 'login-admin', 
         component: LoginAdminComponent 
+      },
+      {
+        path: 'veterinario-menu',
+        component: VeterinarioMenuComponent
+      },
+      {
+        path: 'veterinario-registrar-visita',
+        component: VeterinarioRegistrarVisitaComponent
+      },
+      {
+        path: 'veterinario-cobrar',
+        component: VeterinarioCobrarComponent
+      },
+      {
+        path: 'veterinario-crear-cita',
+        component: VeterinarioCrearCitaComponent
       },
       { 
         path: 'store', 
