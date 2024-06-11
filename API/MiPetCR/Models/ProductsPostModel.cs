@@ -9,7 +9,7 @@
         public float iva { get; set; }
         public int cantidad_disponible { get; set; }
         public string categoria { get; set; } = string.Empty;
-        public bool proc_med { get; set; } 
+        public bool proc_med { get; set; } = false;
 
     }
 }

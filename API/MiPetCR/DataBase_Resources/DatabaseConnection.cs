@@ -50,6 +50,45 @@ namespace MiPetCR.DataBase_Resources
 
         }
 
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool UpdateClient(UserInfoModel userInfo)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_EditarInfoPersonal]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@ced", SqlDbType.Int).Value = userInfo.cedula;
+                cmd.Parameters.AddWithValue("@nombre", SqlDbType.VarChar).Value = userInfo.nombre;
+               
+                cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = userInfo.correo;        
+
+                cmd.Parameters.AddWithValue("@telefono", SqlDbType.Int).Value = userInfo.telefono;
+
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
         //Metodo que permite obtener todos los usuarios
         public static DataTable GetUsers()
         {
@@ -60,6 +99,66 @@ namespace MiPetCR.DataBase_Resources
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarUsuarios]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //Metodo que permite obtener todos los usuarios
+        public static DataTable GetUserInformationWithCedula(Mascota_Dueno cedula_user)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarInfoPersonal]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ced", SqlDbType.Int).Value = cedula_user.cedula;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //Metodo que permite obtener todos los usuarios
+        public static DataTable GetUserInformationWithCorreo(CorreoUserModel correo_user)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarInfoUsuario]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = correo_user.correo;
 
 
                 DataTable tabla = new DataTable();
@@ -115,7 +214,7 @@ namespace MiPetCR.DataBase_Resources
 
 
             SqlConnection conn = new SqlConnection(cadenaConexion);
-
+            bool proc_med_existe = false;
 
             try
             {
@@ -130,10 +229,10 @@ namespace MiPetCR.DataBase_Resources
                 cmd.Parameters.AddWithValue("@iva", SqlDbType.Float).Value = producto_nuevo.iva;
                 cmd.Parameters.AddWithValue("@cantidad_disponible", SqlDbType.Int).Value = producto_nuevo.cantidad_disponible;
                 cmd.Parameters.AddWithValue("@categoria", SqlDbType.VarChar).Value = producto_nuevo.categoria;
-                cmd.Parameters.AddWithValue("@proc_med", SqlDbType.Bit).Value = producto_nuevo.proc_med;
+                cmd.Parameters.AddWithValue("@proc_med", SqlDbType.Bit).Value = proc_med_existe;
                 //cmd.Parameters.AddWithValue("@nombre", SqlDbType.VarChar).Value = producto_nuevo.nombre;
 
-
+                //proc_med_existe = Convert.ToBoolean(cmd.Parameters["@proc_med"].Value);
                 int i = cmd.ExecuteNonQuery();
                 return (i > 0) ? true : false;//Funciona
 
@@ -181,7 +280,7 @@ namespace MiPetCR.DataBase_Resources
         }
 
         //Metodo que permite obtener todos los usuarios ******No funcional
-        public static DataTable GetOrders(OrdenIDModel ordenid)
+        public static DataTable GetProductsOrders(OrdenIDModel ordenid)
         {
             SqlConnection conn = new SqlConnection(cadenaConexion);
 
@@ -192,6 +291,36 @@ namespace MiPetCR.DataBase_Resources
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@id_orden", SqlDbType.Int).Value = ordenid.order_id;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //Metodo que permite obtener todos los usuarios ******No funcional
+        public static DataTable GetOrders()
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarOrdenes]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+               
 
                 DataTable tabla = new DataTable();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -254,6 +383,43 @@ namespace MiPetCR.DataBase_Resources
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 //cmd.Parameters.AddWithValue("@cedula", SqlDbType.Int).Value = client_nuevo.cedula;
+                cmd.Parameters.AddWithValue("@provincia", SqlDbType.VarChar).Value = branch_nuevo.provincia;
+                cmd.Parameters.AddWithValue("@canton", SqlDbType.VarChar).Value = branch_nuevo.canton;
+                cmd.Parameters.AddWithValue("@distrito", SqlDbType.VarChar).Value = branch_nuevo.distrito;
+                cmd.Parameters.AddWithValue("@domicilio", SqlDbType.VarChar).Value = branch_nuevo.domicilio;
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool UpdateBranch(BranchPutModel branch_nuevo)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_EditarSucursales]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", SqlDbType.Int).Value = branch_nuevo.id;
                 cmd.Parameters.AddWithValue("@provincia", SqlDbType.VarChar).Value = branch_nuevo.provincia;
                 cmd.Parameters.AddWithValue("@canton", SqlDbType.VarChar).Value = branch_nuevo.canton;
                 cmd.Parameters.AddWithValue("@distrito", SqlDbType.VarChar).Value = branch_nuevo.distrito;
@@ -393,6 +559,46 @@ namespace MiPetCR.DataBase_Resources
 
         }
 
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool EditMascota(MascotaModel new_mascota)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+            //bool proc_med_existe = false;
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_EditarMascotas]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", SqlDbType.Int).Value = new_mascota.id;
+                cmd.Parameters.AddWithValue("@ced_dueno", SqlDbType.Int).Value = new_mascota.ced_dueno;
+                cmd.Parameters.AddWithValue("@especie", SqlDbType.VarChar).Value = new_mascota.especie;
+                cmd.Parameters.AddWithValue("@raza", SqlDbType.VarChar).Value = new_mascota.raza;
+                cmd.Parameters.AddWithValue("@nombre", SqlDbType.VarChar).Value = new_mascota.nombre;
+                //cmd.Parameters.AddWithValue("@proc_med", SqlDbType.Bit).Value = proc_med_existe;
+                //cmd.Parameters.AddWithValue("@nombre", SqlDbType.VarChar).Value = producto_nuevo.nombre;
+
+                //proc_med_existe = Convert.ToBoolean(cmd.Parameters["@proc_med"].Value);
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
         //Metodo que permite obtener todos los usuarios
         public static DataTable GetPets(Mascota_Dueno cedula_dueno)
         {
@@ -486,7 +692,48 @@ namespace MiPetCR.DataBase_Resources
             }
         }
 
-        
+        //Metodo que permite hacer editar un producto existente
+        public static bool EditProduct(ProductsPostModel producto_nuevo)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+            bool proc_med_existe = false;
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_EditarProductos]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@codigo", SqlDbType.VarChar).Value = producto_nuevo.codigo;
+                cmd.Parameters.AddWithValue("@descripcion", SqlDbType.VarChar).Value = producto_nuevo.descripcion;
+                cmd.Parameters.AddWithValue("@marca", SqlDbType.VarChar).Value = producto_nuevo.marca;
+                cmd.Parameters.AddWithValue("@precio", SqlDbType.Money).Value = producto_nuevo.precio;
+                cmd.Parameters.AddWithValue("@iva", SqlDbType.Float).Value = producto_nuevo.iva;
+                cmd.Parameters.AddWithValue("@cantidad_disponible", SqlDbType.Int).Value = producto_nuevo.cantidad_disponible;
+                cmd.Parameters.AddWithValue("@categoria", SqlDbType.VarChar).Value = producto_nuevo.categoria;
+                cmd.Parameters.AddWithValue("@proc_med", SqlDbType.Bit).Value = proc_med_existe;
+                //cmd.Parameters.AddWithValue("@nombre", SqlDbType.VarChar).Value = producto_nuevo.nombre;
+
+                //proc_med_existe = Convert.ToBoolean(cmd.Parameters["@proc_med"].Value);
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
 
     }
 }

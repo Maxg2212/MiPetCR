@@ -19,7 +19,7 @@ RETURNS VARCHAR(64)
 AS
 BEGIN
     DECLARE @contrasenaSHA256 VARCHAR(64);
-    SET @contrasenaSHA256 = CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @contrasena), 2);
+    SET @contrasenaSHA256 = CONVERT(VARCHAR(64), HASHBYTES('MD5', @contrasena), 2);
     RETURN @contrasenaSHA256;
 END;
 GO
@@ -101,6 +101,19 @@ BEGIN
     SET @contrasenaCifrada = dbo.fn_CifrarContrasena(@contrasena);
     
     UPDATE Usuario SET contrasena = @contrasenaCifrada WHERE correo = @correo;
+END
+
+-- >>> Procedimiento para obtener la información de un usuario
+IF OBJECT_ID(N'dbo.up_RecuperarInfoUsuario', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.up_RecuperarInfoUsuario;
+GO
+CREATE PROCEDURE up_RecuperarInfoUsuario
+    @correo VARCHAR(30)
+AS
+BEGIN
+    SELECT cedula, rol_id, nombre, telefono
+    FROM Usuario
+    WHERE correo = @correo
 END
 
 

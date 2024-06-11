@@ -22,6 +22,7 @@ VALUES
     (1234567892, @adminRoleId, 'admin2@gmail.com', CONVERT(VARCHAR(32), HASHBYTES('MD5', 'admin123'), 2), 'Max Garro Mora', 83154262),
     (1234567893, @VeterinarioRoleId, 'veterinario1@gmail.com', CONVERT(VARCHAR(32), HASHBYTES('MD5', 'admin123'), 2), 'Ricardo Borbón Mena', 25816853),
     (1234567894, @VeterinarioRoleId, 'veterinario2@gmail.com', CONVERT(VARCHAR(32), HASHBYTES('MD5', 'admin123'), 2), 'Max Garro Mora', 61485972),
+    (0000000000, @ClienteRoleId, 'default', CONVERT(VARCHAR(32), HASHBYTES('MD5', 'default'), 2), 'default', 00000000),
     (1234567895, @ClienteRoleId, 'cliente1@gmail.com', CONVERT(VARCHAR(32), HASHBYTES('MD5', 'admin123'), 2), 'Ricardo Borbón Mena', 82528846),
     (1234567896, @ClienteRoleId, 'cliente2@gmail.com', CONVERT(VARCHAR(32), HASHBYTES('MD5', 'admin123'), 2), 'Max Garro Mora', 24953126);
 

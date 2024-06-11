@@ -105,7 +105,7 @@ namespace MiPetCR.Controllers
 
         }
 
-        //Metodo que permite crear una reservacion *********NO FUNCIONAL**************
+        //Metodo que permite crear un producto
         //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
         [HttpPost("create_product")]
         public async Task<ActionResult<JSON_Object>> CreateProduct(ProductsPostModel producto_nuevo)
@@ -113,6 +113,27 @@ namespace MiPetCR.Controllers
             JSON_Object json = new JSON_Object("ok", null);
             //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
             bool var = DatabaseConnection.CreateProduct(producto_nuevo);
+            Console.WriteLine(var);
+            if (var)
+            {
+                return Ok(json);
+            }
+            else
+            {
+                json.status = "error";
+                return BadRequest(json);
+            }
+
+        }
+
+        //Metodo que permite editar un producto
+        //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
+        [HttpPut("update_product")]
+        public async Task<ActionResult<JSON_Object>> UpdateProduct(ProductsPostModel producto_nuevo)
+        {
+            JSON_Object json = new JSON_Object("ok", null);
+            //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
+            bool var = DatabaseConnection.EditProduct(producto_nuevo);
             Console.WriteLine(var);
             if (var)
             {
@@ -194,6 +215,27 @@ namespace MiPetCR.Controllers
 
         }
 
+        //Metodo que permite crear una reservacion 
+        //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
+        [HttpPut("update_branch")]
+        public async Task<ActionResult<JSON_Object>> EditBranch(BranchPutModel branch_nuevo)
+        {
+            JSON_Object json = new JSON_Object("ok", null);
+            //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
+            bool var = DatabaseConnection.UpdateBranch(branch_nuevo);
+            Console.WriteLine(var);
+            if (var)
+            {
+                return Ok(json);
+            }
+            else
+            {
+                json.status = "error";
+                return BadRequest(json);
+            }
+
+        }
+
 
         //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
         [HttpPost("get_all_products_order")]
@@ -205,7 +247,7 @@ namespace MiPetCR.Controllers
             {
                 //El metodo retorna una estructura de tipo DataTable que contiene la informacion de la 
                 //ultima reservacion insertada
-                DataTable all_products_ord = DatabaseConnection.GetOrders(ordenid);
+                DataTable all_products_ord = DatabaseConnection.GetProductsOrders(ordenid);
 
                 List<ProductsOrderGetModel> all_products_order_list = new List<ProductsOrderGetModel>();
                 foreach (DataRow row in all_products_ord.Rows)
@@ -277,6 +319,55 @@ namespace MiPetCR.Controllers
 
                 json.status = "ok";
                 json.result = all_files_list;
+                return Ok(json);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(json);
+            }
+
+
+        }
+
+        //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
+        [HttpGet("get_all_orders")]
+        public async Task<ActionResult<JSON_Object>> GetAllOrders()
+        {
+            JSON_Object json = new JSON_Object("error", null);
+
+            try
+            {
+                //El metodo retorna una estructura de tipo DataTable que contiene la informacion de la 
+                //ultima reservacion insertada
+                DataTable all_orders = DatabaseConnection.GetOrders();
+
+                List<OrdersModel> all_orders_list = new List<OrdersModel>();
+                foreach (DataRow row in all_orders.Rows)
+                {
+
+                    OrdersModel orders_db = new OrdersModel();
+                    //int id_int = Convert.ToInt32(row["id"].ToString());
+                    int id_int = Convert.ToInt32(row["id"].ToString());
+                    //int telefono_int = Convert.ToInt32(row["telefono"].ToString());
+
+
+                    orders_db.id = id_int;
+                    orders_db.nombre_order = row["nombre"].ToString();
+                    orders_db.correo = row["correo"].ToString();
+                    orders_db.fecha = row["fecha"].ToString();
+                    orders_db.hora = row["hora"].ToString();
+                    orders_db.metodo_pago = row["metodo_pago"].ToString();
+                    
+
+                    all_orders_list.Add(orders_db);
+
+                }
+
+                json.status = "ok";
+                json.result = all_orders_list;
                 return Ok(json);
 
 

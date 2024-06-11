@@ -70,6 +70,54 @@ namespace MiPetCR.Controllers
 
         }
 
+        //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
+        [HttpPost("get_user_info_with_correo")]
+        public async Task<ActionResult<JSON_Object>> GetUserInformationWithCorreo(CorreoUserModel correo_user)
+        {
+            JSON_Object json = new JSON_Object("error", null);
+
+            try
+            {
+                //El metodo retorna una estructura de tipo DataTable que contiene la informacion de la 
+                //ultima reservacion insertada
+                DataTable all_user_info = DatabaseConnection.GetUserInformationWithCorreo(correo_user);
+
+                List<UserLoginModel> all_info_list = new List<UserLoginModel>();
+                foreach (DataRow row in all_user_info.Rows)
+                {
+
+                    UserLoginModel user_db = new UserLoginModel();
+                    int cedula_int = Convert.ToInt32(row["cedula"].ToString());
+                    int rol_int = Convert.ToInt32(row["rol_id"].ToString());
+                    int telefono = Convert.ToInt32(row["telefono"].ToString());
+
+
+                    user_db.cedula = cedula_int;
+                    user_db.rol_id = rol_int;
+                    user_db.nombre = row["nombre"].ToString();
+                    user_db.telefono = telefono;
+                    
+                    //user_db.rol_nombre = row["rol_nombre"].ToString();
+
+                    all_info_list.Add(user_db);
+
+                }
+
+                json.status = "ok";
+                json.result = all_info_list;
+                return Ok(json);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(json);
+            }
+
+
+        }
+
 
     }
 }
