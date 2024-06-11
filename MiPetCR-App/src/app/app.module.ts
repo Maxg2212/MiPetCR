@@ -18,6 +18,7 @@ import { ProductDetailComponent } from './view/product-detail/product-detail.com
 import { ClientHubComponent } from './view/client-hub/client-hub.component';
 import { SidebarClienteComponent } from './view/sidebar-cliente/sidebar-cliente.component';
 import { ClientStoreComponent } from './view/client-store/client-store.component';
+import { ViewCartComponent } from './view/view-cart/view-cart.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ClientStoreComponent } from './view/client-store/client-store.component
     ClientHubComponent,
     SidebarClienteComponent,
     ClientStoreComponent,
+    ViewCartComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +79,10 @@ import { ClientStoreComponent } from './view/client-store/client-store.component
       { 
         path: 'client-store', 
         component: ClientStoreComponent 
+      },
+      { 
+        path: 'view-cart', 
+        component: ViewCartComponent 
       }
     ]),
   ],

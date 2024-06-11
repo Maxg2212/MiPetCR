@@ -31,29 +31,11 @@
     
     </nav>
     
-    <div class="container py-5">
-
-        <div class="row p-3">
-          <!-- Aqui se itera -->
-          <div *ngFor = "let product of products; let i=index" class="col-4 p-2">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-text">{{product['descripcion']}}</p>
-                  <p class="card-text">{{product['marca']}}</p>
-                  <p class="card-text">{{product['precio']}}</p>
-                </div>
-    
-                <div class="row justify-content-md-center">
-                  <div class="col-4 p-2">
-                    <button class="btn btn-primary" (click)="viewProduct(i)">Ver producto</button>
-                    <button class="btn btn-primary" (click)="addProduct(i)">Agregar al carrito</button>
-                  </div>
-                </div>
-              </div>
-            
-          </div>
-          <!-- Aqui se itera -->
-        </div>
+    <div>
+        <h2>Carrito de Compras</h2>
+        <p>Total a pagar: {{ totalPrice | currency }}</p>
     </div>
+      
     
 </body>
+
