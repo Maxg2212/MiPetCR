@@ -103,4 +103,17 @@ BEGIN
     UPDATE Usuario SET contrasena = @contrasenaCifrada WHERE correo = @correo;
 END
 
+-- >>> Procedimiento para obtener la información de un usuario
+IF OBJECT_ID(N'dbo.up_RecuperarInfoUsuario', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.up_RecuperarInfoUsuario;
+GO
+CREATE PROCEDURE up_RecuperarInfoUsuario
+    @correo VARCHAR(30)
+AS
+BEGIN
+    SELECT cedula, rol_id, nombre, telefono
+    FROM Usuario
+    WHERE correo = @correo
+END
+
 
