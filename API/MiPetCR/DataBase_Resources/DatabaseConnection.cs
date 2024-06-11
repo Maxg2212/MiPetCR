@@ -119,7 +119,7 @@ namespace MiPetCR.DataBase_Resources
         }
 
         //Metodo que permite obtener todos los usuarios
-        public static DataTable GetUserInformation(Mascota_Dueno cedula_user)
+        public static DataTable GetUserInformationWithCedula(Mascota_Dueno cedula_user)
         {
             SqlConnection conn = new SqlConnection(cadenaConexion);
 
@@ -129,6 +129,36 @@ namespace MiPetCR.DataBase_Resources
                 SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarInfoPersonal]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ced", SqlDbType.Int).Value = cedula_user.cedula;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //Metodo que permite obtener todos los usuarios
+        public static DataTable GetUserInformationWithCorreo(CorreoUserModel correo_user)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarInfoUsuario]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = correo_user.correo;
 
 
                 DataTable tabla = new DataTable();

@@ -208,7 +208,7 @@ namespace MiPetCR.Controllers
             {
                 //El metodo retorna una estructura de tipo DataTable que contiene la informacion de la 
                 //ultima reservacion insertada
-                DataTable all_user_info = DatabaseConnection.GetUserInformation(cedula_user);
+                DataTable all_user_info = DatabaseConnection.GetUserInformationWithCedula(cedula_user);
 
                 List<UserInfoModel> all_info_list = new List<UserInfoModel>();
                 foreach (DataRow row in all_user_info.Rows)
