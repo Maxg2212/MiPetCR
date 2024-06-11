@@ -2635,19 +2635,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\maxga\\.nuget\\packages\\": {}
+    "C:\\Users\\Daniel\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maxga\\OneDrive\\Documentos\\Cursos CE\\Principios de Modelado\\MiPet\\MiPetCR\\API\\MiPetCR\\MiPetCR.csproj",
+      "projectUniqueName": "C:\\Users\\Daniel\\Desktop\\Proyecto Modelado\\MiPetCR\\API\\MiPetCR\\MiPetCR.csproj",
       "projectName": "MiPetCR",
-      "projectPath": "C:\\Users\\maxga\\OneDrive\\Documentos\\Cursos CE\\Principios de Modelado\\MiPet\\MiPetCR\\API\\MiPetCR\\MiPetCR.csproj",
-      "packagesPath": "C:\\Users\\maxga\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maxga\\OneDrive\\Documentos\\Cursos CE\\Principios de Modelado\\MiPet\\MiPetCR\\API\\MiPetCR\\obj\\",
+      "projectPath": "C:\\Users\\Daniel\\Desktop\\Proyecto Modelado\\MiPetCR\\API\\MiPetCR\\MiPetCR.csproj",
+      "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Daniel\\Desktop\\Proyecto Modelado\\MiPetCR\\API\\MiPetCR\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\maxga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2655,6 +2655,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2667,6 +2668,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2713,7 +2719,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
