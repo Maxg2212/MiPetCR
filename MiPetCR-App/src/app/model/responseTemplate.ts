@@ -12,3 +12,8 @@ export interface ResponseTemplateClient {
   status: string;
   result: [];
 }
+
+export interface ResponseTemplatePetsList {
+  status: string;
+  result: [];
+}
