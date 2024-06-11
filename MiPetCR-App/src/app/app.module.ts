@@ -23,6 +23,9 @@ import { VeterinarioRegistrarVisitaComponent } from './view/veterinario-registra
 import { VeterinarioCobrarComponent } from './view/veterinario-cobrar/veterinario-cobrar.component';
 import { VeterinarioCrearCitaComponent } from './view/veterinario-crear-cita/veterinario-crear-cita.component';
 import { ViewCartComponent } from './view/view-cart/view-cart.component';
+import { VeterinarioCrearExpedienteComponent } from './view/veterinario-crear-expediente/veterinario-crear-expediente.component';
+import { VeterinarioBusquedaDuenoComponent } from './view/veterinario-busqueda-dueno/veterinario-busqueda-dueno.component';
+import { VeterinarioEditarExpendienteComponent } from './view/veterinario-editar-expendiente/veterinario-editar-expendiente.component';
 
 
 @NgModule({
@@ -45,6 +48,9 @@ import { ViewCartComponent } from './view/view-cart/view-cart.component';
     VeterinarioCobrarComponent,
     VeterinarioCrearCitaComponent,
     ViewCartComponent,
+    VeterinarioCrearExpedienteComponent,
+    VeterinarioBusquedaDuenoComponent,
+    VeterinarioEditarExpendienteComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +93,18 @@ import { ViewCartComponent } from './view/view-cart/view-cart.component';
       {
         path: 'veterinario-crear-cita',
         component: VeterinarioCrearCitaComponent
+      },
+      {
+        path: 'veterinario-crear-expediente',
+        component: VeterinarioCrearExpedienteComponent
+      },
+      {
+        path: 'veterinario-busqueda-dueno',
+        component: VeterinarioBusquedaDuenoComponent
+      },
+      {
+        path: 'veterinario-editar-expediente',
+        component: VeterinarioEditarExpendienteComponent
       },
       { 
         path: 'store', 
