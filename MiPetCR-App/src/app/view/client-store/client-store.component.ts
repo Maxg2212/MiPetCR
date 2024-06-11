@@ -46,6 +46,7 @@ export class ClientStoreComponent implements OnInit{
     this.product = this.products[index]; 
     this.productPrice = this.product.precio ?? 0;
     this.CartPricesService.addToCart(this.productPrice);
+    alert('Agregado al carrito');
   }
   
 }
