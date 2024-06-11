@@ -35,6 +35,27 @@ namespace MiPetCR.Controllers
 
         }
 
+        //Metodo que permite crear una reservacion 
+        //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
+        [HttpPut("update_mascota")]
+        public async Task<ActionResult<JSON_Object>> EditMascota(MascotaModel mascota_nuevo)
+        {
+            JSON_Object json = new JSON_Object("ok", null);
+            //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
+            bool var = DatabaseConnection.EditMascota(mascota_nuevo);
+            Console.WriteLine(var);
+            if (var)
+            {
+                return Ok(json);
+            }
+            else
+            {
+                json.status = "error";
+                return BadRequest(json);
+            }
+
+        }
+
         //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
         [HttpPost("get_my_pets")]
         public async Task<ActionResult<JSON_Object>> GetPets(Mascota_Dueno cedula_dueno)
@@ -174,6 +195,73 @@ namespace MiPetCR.Controllers
                 return BadRequest(json);
             }
 
+
+        }
+
+        //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
+        [HttpPost("get_user_info")]
+        public async Task<ActionResult<JSON_Object>> GetUserInformation(Mascota_Dueno cedula_user)
+        {
+            JSON_Object json = new JSON_Object("error", null);
+
+            try
+            {
+                //El metodo retorna una estructura de tipo DataTable que contiene la informacion de la 
+                //ultima reservacion insertada
+                DataTable all_user_info = DatabaseConnection.GetUserInformation(cedula_user);
+
+                List<UserInfoModel> all_info_list = new List<UserInfoModel>();
+                foreach (DataRow row in all_user_info.Rows)
+                {
+
+                    UserInfoModel user_db = new UserInfoModel();
+                    int cedula_int = Convert.ToInt32(row["cedula"].ToString());
+                    int telefono_int = Convert.ToInt32(row["telefono"].ToString());
+
+
+                    user_db.cedula = cedula_int;                   
+                    user_db.nombre = row["nombre"].ToString();
+                    user_db.correo = row["correo"].ToString();
+                    user_db.telefono = telefono_int;
+                    //user_db.rol_nombre = row["rol_nombre"].ToString();
+
+                    all_info_list.Add(user_db);
+
+                }
+
+                json.status = "ok";
+                json.result = all_info_list;
+                return Ok(json);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(json);
+            }
+
+
+        }
+
+        //Metodo que permite crear una reservacion 
+        //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
+        [HttpPut("update_personal_info")]
+        public async Task<ActionResult<JSON_Object>> UpdateClient(UserInfoModel userInfo)
+        {
+            JSON_Object json = new JSON_Object("ok", null);
+            //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
+            bool var = DatabaseConnection.UpdateClient(userInfo);
+            Console.WriteLine(var);
+            if (var)
+            {
+                return Ok(json);
+            }
+            else
+            {
+                json.status = "error";
+                return BadRequest(json);
+            }
 
         }
 

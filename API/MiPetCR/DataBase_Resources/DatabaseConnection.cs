@@ -50,6 +50,45 @@ namespace MiPetCR.DataBase_Resources
 
         }
 
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool UpdateClient(UserInfoModel userInfo)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_EditarInfoPersonal]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@ced", SqlDbType.Int).Value = userInfo.cedula;
+                cmd.Parameters.AddWithValue("@nombre", SqlDbType.VarChar).Value = userInfo.nombre;
+               
+                cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = userInfo.correo;        
+
+                cmd.Parameters.AddWithValue("@telefono", SqlDbType.Int).Value = userInfo.telefono;
+
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
         //Metodo que permite obtener todos los usuarios
         public static DataTable GetUsers()
         {
@@ -60,6 +99,36 @@ namespace MiPetCR.DataBase_Resources
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarUsuarios]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //Metodo que permite obtener todos los usuarios
+        public static DataTable GetUserInformation(Mascota_Dueno cedula_user)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarInfoPersonal]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ced", SqlDbType.Int).Value = cedula_user.cedula;
 
 
                 DataTable tabla = new DataTable();
@@ -443,6 +512,46 @@ namespace MiPetCR.DataBase_Resources
                 cmd.Parameters.AddWithValue("@raza", SqlDbType.VarChar).Value = new_mascota.raza;
                 cmd.Parameters.AddWithValue("@nombre", SqlDbType.VarChar).Value = new_mascota.nombre;
 
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool EditMascota(MascotaModel new_mascota)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+            //bool proc_med_existe = false;
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_EditarMascotas]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", SqlDbType.Int).Value = new_mascota.id;
+                cmd.Parameters.AddWithValue("@ced_dueno", SqlDbType.Int).Value = new_mascota.ced_dueno;
+                cmd.Parameters.AddWithValue("@especie", SqlDbType.VarChar).Value = new_mascota.especie;
+                cmd.Parameters.AddWithValue("@raza", SqlDbType.VarChar).Value = new_mascota.raza;
+                cmd.Parameters.AddWithValue("@nombre", SqlDbType.VarChar).Value = new_mascota.nombre;
+                //cmd.Parameters.AddWithValue("@proc_med", SqlDbType.Bit).Value = proc_med_existe;
+                //cmd.Parameters.AddWithValue("@nombre", SqlDbType.VarChar).Value = producto_nuevo.nombre;
+
+                //proc_med_existe = Convert.ToBoolean(cmd.Parameters["@proc_med"].Value);
                 int i = cmd.ExecuteNonQuery();
                 return (i > 0) ? true : false;//Funciona
 
