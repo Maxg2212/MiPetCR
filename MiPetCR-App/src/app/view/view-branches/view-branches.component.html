@@ -1,0 +1,41 @@
+<body>
+    <app-sidebar-cliente></app-sidebar-cliente>
+
+    <div class="container py-5">
+        <div class="row py-4">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-4 text-center">
+                <h1> Horario de Sucursales</h1>
+            </div>
+        </div>
+
+        <div class="row p-3">
+            <!-- Aqui se itera -->
+            <div *ngFor = "let branch of branchList; let i=index" class="col-4 p-2">
+                <div class="card">
+                  <div class="card-body">
+                    <h2 class="card-text">{{branch['branch_id']}}</h2>
+                    <p class="card-text">Provincia: {{branch['provincia']}}</p>
+                    <p class="card-text">Cantón: {{branch['canton']}}</p>
+                    <p class="card-text">Distrito: {{branch['distrito']}}</p>
+                    <p class="card-text">Domicilio: {{branch['domicilio']}}</p>
+                  </div>
+      
+                  <div class="row justify-content-md-center">
+                    <div class="col-4 p-2">
+                      <button class="btn btn-primary">Agendar Cita</button>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+            <!-- Aqui se itera -->
+          </div>
+    </div>
+
+    
+
+    
+
+</body>
+
+

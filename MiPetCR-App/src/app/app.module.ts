@@ -32,6 +32,8 @@ import { EditProfileComponent } from './view/edit-profile/edit-profile.component
 import { ViewPetsComponent } from './view/view-pets/view-pets.component';
 import { CheckoutComponent } from './view/checkout/checkout.component';
 import { PetHistoryComponent } from './view/pet-history/pet-history.component';
+import { PurchaseHistoryComponent } from './view/purchase-history/purchase-history.component';
+import { ViewBranchesComponent } from './view/view-branches/view-branches.component';
 
 
 @NgModule({
@@ -63,6 +65,8 @@ import { PetHistoryComponent } from './view/pet-history/pet-history.component';
     ViewPetsComponent,
     CheckoutComponent,
     PetHistoryComponent,
+    PurchaseHistoryComponent,
+    ViewBranchesComponent,
   ],
   imports: [
     BrowserModule,
@@ -157,6 +161,14 @@ import { PetHistoryComponent } from './view/pet-history/pet-history.component';
       { 
         path: 'pet-history/:id', 
         component: PetHistoryComponent 
+      },
+      { 
+        path: 'client-history', 
+        component: PurchaseHistoryComponent 
+      },
+      { 
+        path: 'view-branches', 
+        component: ViewBranchesComponent 
       }
     ]),
   ],

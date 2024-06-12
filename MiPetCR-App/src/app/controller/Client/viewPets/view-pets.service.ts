@@ -1,5 +1,5 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { GetClientCedulaI } from 'src/app/model/Client/get-client';
 import { ResponseTemplateI, ResponseTemplatePetsList} from 'src/app/model/responseTemplate';

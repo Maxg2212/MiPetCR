@@ -15,9 +15,10 @@
             <div *ngFor = "let history of historyList; let i=index" class="col-4 p-2">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-text">{{history['fecha']}}</p>
-                        <p class="card-text">{{history['descripcion']}}</p>
-                        <p class="card-text">{{history['detalles']}}</p>
+                        <h2 class="card-text">Cita</h2>
+                        <p class="card-text">Fecha: {{history['fecha']}}</p>
+                        <p class="card-text">Descripción: {{history['descripcion']}}</p>
+                        <p class="card-text">Detalles: {{history['detalles']}}</p>
                     </div>
                 </div>
             </div>

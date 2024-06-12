@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-import { ResponseTemplateI, ResponseTemplateListProductsI } from 'src/app/model/responseTemplate';
+import { ResponseTemplateListI } from 'src/app/model/responseTemplate';
 import { BD_URL } from 'src/app/setValues';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetallProductsService {
+export class ViewBranchesService {
 
   BD_URL = BD_URL;
 
@@ -69,14 +69,16 @@ export class GetallProductsService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
-    /**
+      /**
    * @description This method requests all of the unapproved products from the API using the following link
    * @link BD_ULR + get_unapproved_products
    */
-    getAllProducts(): Observable<ResponseTemplateListProductsI>{
-      let direccion = this.BD_URL + 'get_all_products';
-      return this.http.get<ResponseTemplateListProductsI>(direccion).pipe(
-        catchError(this.handleErrorProducts)
-        );
-    }
+      getAllBranches(): Observable<ResponseTemplateListI>{
+        let direccion = this.BD_URL + 'get_all_branches';
+        return this.http.get<ResponseTemplateListI>(direccion).pipe(
+          catchError(this.handleErrorProducts)
+          );
+      }
+
+
 }

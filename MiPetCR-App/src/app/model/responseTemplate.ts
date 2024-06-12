@@ -1,6 +1,11 @@
 export interface ResponseTemplateI {
     status: string;
-    result: boolean;
+    result: string;
+  }
+
+  export interface ResponseTemplateListI {
+    status: string;
+    result: [];
   }
 
 export interface ResponseTemplateListProductsI {
