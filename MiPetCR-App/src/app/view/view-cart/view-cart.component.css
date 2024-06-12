@@ -1,0 +1,5 @@
+.centered-list {
+    list-style-position: inside;
+    text-align: center;
+    padding: 0;
+  }

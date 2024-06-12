@@ -17,3 +17,8 @@ export interface ResponseTemplatePetsList {
   status: string;
   result: [];
 }
+
+export interface ResponseTemplatePetsHistory {
+  status: string;
+  result: [];
+}

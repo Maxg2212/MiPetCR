@@ -10,3 +10,9 @@ export interface GetClientI {
 export interface GetClientCedulaI {
     cedula: number;
 }
+
+export interface GetIdPetI {
+    id: number;
+}
+
+

@@ -30,6 +30,8 @@ import { VeterinarioVerHistorialCompraComponent } from './view/veterinario-ver-h
 import { VeterinarioConsultarExpedienteMedicoComponent } from './view/veterinario-consultar-expediente-medico/veterinario-consultar-expediente-medico.component';
 import { EditProfileComponent } from './view/edit-profile/edit-profile.component';
 import { ViewPetsComponent } from './view/view-pets/view-pets.component';
+import { CheckoutComponent } from './view/checkout/checkout.component';
+import { PetHistoryComponent } from './view/pet-history/pet-history.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { ViewPetsComponent } from './view/view-pets/view-pets.component';
     VeterinarioConsultarExpedienteMedicoComponent,
     EditProfileComponent,
     ViewPetsComponent,
+    CheckoutComponent,
+    PetHistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -149,6 +153,10 @@ import { ViewPetsComponent } from './view/view-pets/view-pets.component';
       { 
         path: 'view-pets', 
         component: ViewPetsComponent 
+      },
+      { 
+        path: 'pet-history/:id', 
+        component: PetHistoryComponent 
       }
     ]),
   ],

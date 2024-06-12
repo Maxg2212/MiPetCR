@@ -18,21 +18,35 @@
         <a class="navbar-brand text-white" href="#">MiPetCR</a>
       </div>
       <div class="col-0">
-        <button class="btn btn-outline-light" >Carrito</button>
+        <button class="btn btn-outline-light">Carrito</button>
       </div>
     </div>
   </nav>
-  
-  <div>
-      <h2>Carrito de Compras</h2>
-      
-      <ul>
+
+  <div class="container py-5">
+    <div class="row py-4">
+      <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-4 text-center">
+        <h1>Carrito de Compras</h1>
+      </div>
+    </div>
+
+    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-2 text-center"> 
+      <ul class="list-unstyled centered-list">
         <li *ngFor="let price of productPrices">Precio: {{ price }}</li>
       </ul>
 
-      <p>Total a pagar: {{ totalPrice }}</p>
+      <div class="py-4 text-center">
+        <p>Total a pagar: {{ totalPrice }}</p>
+      </div>
 
-      <!-- Botón de Comprar -->
-      <button class="btn btn-primary" (click)="purchase()">Comprar</button>
+      <div class="row d-flex justify-content-center">
+        <div class="col-auto p-2">
+          <a href="/client-store" type="button" class="btn btn-primary">Comprar</a>
+        </div>
+        <div class="col-auto p-2">
+          <a href="/client-store" type="button" class="btn btn-primary">Volver</a>
+        </div>
+      </div>
+    </div>
   </div>
 </body>

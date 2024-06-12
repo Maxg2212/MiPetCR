@@ -13,3 +13,10 @@ export interface PetI {
     raza: number | null;
     nombre: string | null;
 }
+
+export interface PetHistoryI {
+    int_historial: number | null;
+    fecha: string | null;
+    descripcion: string | null;
+    detalles: number | null;
+}

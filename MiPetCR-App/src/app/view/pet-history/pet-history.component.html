@@ -1,0 +1,34 @@
+<body>
+    <app-sidebar-cliente></app-sidebar-cliente>
+
+    <div class="container py-5">
+
+        <div class="row py-4">
+
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-4 text-center">
+  
+              <h1> Historial de la mascota</h1>
+            </div>
+        </div>
+
+        <div class="row p-3">
+            <div *ngFor = "let history of historyList; let i=index" class="col-4 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">{{history['fecha']}}</p>
+                        <p class="card-text">{{history['descripcion']}}</p>
+                        <p class="card-text">{{history['detalles']}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-auto p-1">
+                <a href="/view-pets" type="button" class="btn btn-primary me-2">Volver</a>
+            </div>
+        </div>
+    </div>
+
+
+</body>

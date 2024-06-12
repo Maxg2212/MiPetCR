@@ -39,7 +39,7 @@ export class ClientHubComponent implements OnInit {
       console.log(data);
       this.clients = data.result;
       this.client = this.clients[0];
-      sessionStorage.setItem('cedula', JSON.stringify(this.client?.cedula));
+      sessionStorage.setItem('client', JSON.stringify(this.client));
     });
   }
 
