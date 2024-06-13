@@ -37,8 +37,10 @@ export class ClientStoreComponent implements OnInit {
   addProduct(index: number): void {
     this.product = this.products[index]; 
     this.productPrice = this.product.precio ?? 0;
+    const codigo = this.product.codigo ?? "";
     console.log(this.productPrice);
     this.CartPricesService.addToCart(this.productPrice);
+    this.CartPricesService.addProductCode(codigo);
     alert('Agregado al carrito');
   }
 }

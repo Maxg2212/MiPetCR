@@ -9,6 +9,7 @@ export class CartPricesService {
   currentTotalPrice = this.totalPrice.asObservable();
 
   private productPrices: number[] = [];
+  private codelist: string[] = [];
   private productPricesSubject = new BehaviorSubject<number[]>([]);
   currentProductPrices = this.productPricesSubject.asObservable();
 
@@ -25,6 +26,8 @@ export class CartPricesService {
     if (storedTotalPrice) {
       this.totalPrice.next(JSON.parse(storedTotalPrice));
     }
+
+
   }
 
   addToCart(price: number): void {
@@ -37,6 +40,12 @@ export class CartPricesService {
     // Guardar en el localStorage
     localStorage.setItem('productPrices', JSON.stringify(this.productPrices));
     localStorage.setItem('totalPrice', JSON.stringify(this.totalPrice.value));
+  }
+
+  addProductCode(code: string): void{
+    this.codelist.push(code);
+    localStorage.setItem('codelist', JSON.stringify(this.codelist));
+    console.log(this.codelist);
   }
 
   getTotalPrice(): number {

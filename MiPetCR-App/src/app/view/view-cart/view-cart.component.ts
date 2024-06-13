@@ -37,4 +37,16 @@ export class ViewCartComponent implements OnInit {
 
     console.log('Carrito de compras vacío');
   }
+
+  limpiar(): void {
+    // Limpiar el localStorage
+    localStorage.removeItem('productPrices');
+    localStorage.removeItem('totalPrice');
+
+    // Vaciar las variables locales
+    this.productPrices = [];
+    this.totalPrice = 0;
+
+    console.log('Carrito de compras vacío');
+  }
 }

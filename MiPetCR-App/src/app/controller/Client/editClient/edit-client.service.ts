@@ -49,7 +49,7 @@ export class EditClientService {
       let direccion = this.BD_URL + 'update_personal_info';
       
       console.log(form);
-      return this.http.put<ResponseTemplateI>(direccion, form).pipe(
+      return this.http.post<ResponseTemplateI>(direccion, form).pipe(
         catchError(this.handleError)
         );
     }

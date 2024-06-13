@@ -169,6 +169,10 @@ import { ViewBranchesComponent } from './view/view-branches/view-branches.compon
       { 
         path: 'view-branches', 
         component: ViewBranchesComponent 
+      },
+      { 
+        path: 'checkout', 
+        component: CheckoutComponent 
       }
     ]),
   ],
