@@ -80,6 +80,9 @@ export class CheckoutComponent {
   
     this.api.createPayment(plan).subscribe(
       data => {
+        localStorage.removeItem('productPrices');
+        localStorage.removeItem('totalPrice');
+        localStorage.removeItem('codelist');
         alert('Su pago se ha hecho exitosamente');
       },
       error => {
