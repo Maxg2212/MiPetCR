@@ -381,6 +381,154 @@ namespace MiPetCR.Controllers
 
         }
 
+        //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
+        [HttpGet("get_all_appointments")]
+        public async Task<ActionResult<JSON_Object>> GetCitas()
+        {
+            JSON_Object json = new JSON_Object("error", null);
+
+            try
+            {
+                //El metodo retorna una estructura de tipo DataTable que contiene la informacion de la 
+                //ultima reservacion insertada
+                DataTable all_files = DatabaseConnection.GetCitas();
+
+                List<CitasGetModel> all_citas_list = new List<CitasGetModel>();
+                foreach (DataRow row in all_files.Rows)
+                {
+
+                    CitasGetModel citas_db = new CitasGetModel();
+                    int id_int = Convert.ToInt32(row["id"].ToString());
+                    //int telefono_int = Convert.ToInt32(row["telefono"].ToString());
+
+
+                    citas_db.cita_id = id_int;
+                    citas_db.nombre_usuario = row["nombre"].ToString();
+                    citas_db.nombre_mascota = row["nombre"].ToString();
+                    citas_db.provincia = row["provincia"].ToString();
+                    citas_db.canton = row["canton"].ToString();
+                    citas_db.fecha = row["fecha"].ToString();
+                    citas_db.hora_ingreso = row["hora_ingreso"].ToString();
+                    citas_db.hora_salida = row["hora_salida"].ToString();
+
+                    all_citas_list.Add(citas_db);
+
+                }
+
+                json.status = "ok";
+                json.result = all_citas_list;
+                return Ok(json);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(json);
+            }
+
+
+        }
+
+        //Metodo que permite crear una reservacion 
+        //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
+        [HttpPost("create_appointment")]
+        public async Task<ActionResult<JSON_Object>> CreateAppointment(CitasPostModel cita_nuevo)
+        {
+            DateTime dateTime = Convert.ToDateTime(cita_nuevo.fecha);
+            DateOnly dateOnly = DateOnly.FromDateTime(dateTime);
+            string dbDate = dateOnly.ToString("yyyy-MM-dd");
+            Console.WriteLine("1) " + dbDate);
+            DateOnly dateOnly1 = DateOnly.ParseExact(dbDate, "yyyy-MM-dd");
+            JSON_Object json = new JSON_Object("ok", null);
+            //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
+            bool var = DatabaseConnection.InsertAppointment(cita_nuevo);
+            Console.WriteLine(var);
+            if (var)
+            {
+                return Ok(json);
+            }
+            else
+            {
+                json.status = "error";
+                return BadRequest(json);
+            }
+
+        }
+
+        //Metodo que permite crear una reservacion 
+        //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
+        [HttpPost("update_appointment")]
+        public async Task<ActionResult<JSON_Object>> UpdateAppointment(CitasPutModel cita_nuevo)
+        {
+            DateTime dateTime = Convert.ToDateTime(cita_nuevo.fecha);
+            DateOnly dateOnly = DateOnly.FromDateTime(dateTime);
+            string dbDate = dateOnly.ToString("yyyy-MM-dd");
+            Console.WriteLine("1) " + dbDate);
+            DateOnly dateOnly1 = DateOnly.ParseExact(dbDate, "yyyy-MM-dd");
+            JSON_Object json = new JSON_Object("ok", null);
+            //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
+            bool var = DatabaseConnection.UpdateAppointment(cita_nuevo);
+            Console.WriteLine(var);
+            if (var)
+            {
+                return Ok(json);
+            }
+            else
+            {
+                json.status = "error";
+                return BadRequest(json);
+            }
+
+        }
+
+        //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
+        [HttpPost("get_purchases_history")]
+        public async Task<ActionResult<JSON_Object>> GetPurchasesHistory(Mascota_Dueno id_usuario)
+        {
+            JSON_Object json = new JSON_Object("error", null);
+
+            try
+            {
+                //El metodo retorna una estructura de tipo DataTable que contiene la informacion de la 
+                //ultima reservacion insertada
+                DataTable purchases_history = DatabaseConnection.GetPurchasesHistory(id_usuario);
+
+                List<ComprasClienteModel> all_purchases_list = new List<ComprasClienteModel>();
+                foreach (DataRow row in purchases_history.Rows)
+                {
+
+                    ComprasClienteModel comprascliente_get = new ComprasClienteModel();
+                    int id_historial_int = Convert.ToInt32(row["id"].ToString());
+
+
+                    Console.WriteLine(id_historial_int);
+
+                    comprascliente_get.id_compra = id_historial_int;
+                    comprascliente_get.fecha = row["fecha"].ToString();
+                    comprascliente_get.hora = row["hora"].ToString();
+                    comprascliente_get.metodo_pago = row["metodo_pago"].ToString();
+
+
+                    all_purchases_list.Add(comprascliente_get);
+
+                }
+
+                json.status = "ok";
+                json.result = all_purchases_list;
+                return Ok(json);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(json);
+            }
+
+
+        }
+
 
     }
 }
