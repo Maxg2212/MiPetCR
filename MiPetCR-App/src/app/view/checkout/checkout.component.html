@@ -1,1 +1,86 @@
-<p>checkout works!</p>
+<body>
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <ul class="navbar-nav text-light">
+        <li><a class="nav-link" href="/client-hub"><div class="py-1">Home</div></a></li>
+        <li><a class="nav-link" href="/client-store"><div class="py-1">Shop</div></a></li>
+        <li><a class="nav-link" href="/client-history"><div class="py-1">Compras</div></a></li>
+        <li><a class="nav-link" href="/view-branches"><div class="py-1">Sucursales</div></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="col">
+        <a class="navbar-brand text-white" href="#">MiPetCR</a>
+      </div>
+      <div class="col-0">
+        <a href="/view-cart" type="button" class="btn btn-outline-light">Carrito</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="h2 text-center">Realizar Compra</div>
+          <form [formGroup]="newPayment" (ngSubmit)="addPlan(newPayment.getRawValue())">
+            <div class="mb-4 mx-4">
+              <label for="metodoPago">Tipo de Pago</label>
+              <select class="form-select" formControlName="metodoPago">
+                <option [disabled]="true" value="">Metodo de Pago</option>
+                <option *ngFor="let payment of paymentTypes" [value]="payment">
+                  {{ payment }}
+                </option>
+              </select>
+              <div *ngIf="newPayment.get('metodoPago')?.invalid && newPayment.get('metodoPago')?.touched" class="text-danger">
+                Este campo es requerido.
+              </div>
+            </div>
+            <div class="mb-4 mx-4">
+              <label for="provincia" class="form-label">Provincia</label>
+              <input type="text" formControlName="provincia" class="form-control" placeholder="Provincia" />
+              <div *ngIf="newPayment.get('provincia')?.invalid && newPayment.get('provincia')?.touched" class="text-danger">
+                Este campo es requerido.
+              </div>
+            </div>
+            <div class="mb-4 mx-4">
+              <label for="canton" class="form-label">Cantón</label>
+              <input type="text" formControlName="canton" class="form-control" placeholder="Cantón" />
+              <div *ngIf="newPayment.get('canton')?.invalid && newPayment.get('canton')?.touched" class="text-danger">
+                Este campo es requerido.
+              </div>
+            </div>
+            <div class="mb-4 mx-4">
+              <label for="distrito" class="form-label">Distrito</label>
+              <input type="text" formControlName="distrito" class="form-control" placeholder="Distrito" />
+              <div *ngIf="newPayment.get('distrito')?.invalid && newPayment.get('distrito')?.touched" class="text-danger">
+                Este campo es requerido.
+              </div>
+            </div>
+            <div class="mb-4 mx-4">
+              <label for="domicilio" class="form-label">Domicilio</label>
+              <input type="text" formControlName="domicilio" class="form-control" placeholder="Domicilio" />
+              <div *ngIf="newPayment.get('domicilio')?.invalid && newPayment.get('domicilio')?.touched" class="text-danger">
+                Este campo es requerido.
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-auto p-2">
+                <button class="btn btn-success" type="submit">Editar Perfil</button>
+              </div>
+              <div class="col-auto p-2">
+                <a href="/client-hub" type="button" class="btn btn-primary me-2">Volver</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

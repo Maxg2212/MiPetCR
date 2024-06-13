@@ -42,6 +42,7 @@ export class ViewCartComponent implements OnInit {
     // Limpiar el localStorage
     localStorage.removeItem('productPrices');
     localStorage.removeItem('totalPrice');
+    localStorage.removeItem('codelist');
 
     // Vaciar las variables locales
     this.productPrices = [];
