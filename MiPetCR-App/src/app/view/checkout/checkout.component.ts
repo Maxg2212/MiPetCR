@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CheckoutService } from 'src/app/controller/Client/checkoutPayment/checkout.service';
 import { ProductI, PlanFormsI, PlanI } from 'src/app/model/Client/newPayment';
-import { paymentTypes } from 'src/app/setValues';
+import { paymentTypes, paymentMethod } from 'src/app/setValues';
 import { ClientModelI } from 'src/app/model/Client/client-model';
 
 @Component({
@@ -10,9 +10,13 @@ import { ClientModelI } from 'src/app/model/Client/client-model';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent {
+export class CheckoutComponent implements OnInit{
 
   paymentTypes = paymentTypes;
+
+  totalPrice = 0;
+
+  paymentMethod = paymentMethod;
 
   /**
    * @description This is the form we use to store the data the user inputs.
@@ -22,13 +26,23 @@ export class CheckoutComponent {
     provincia: new FormControl('', Validators.required),
     canton: new FormControl('', Validators.required),
     distrito: new FormControl('', Validators.required),
-    domicilio: new FormControl('', Validators.required)
+    domicilio: new FormControl('', Validators.required),
+    metodo: new FormControl('', Validators.required)
   });
 
   /**
    * @description Constructor that injects the API's we are going to use.
    */
   constructor(private api: CheckoutService) { }
+
+  ngOnInit(): void {
+    const storedTotalPrice = localStorage.getItem('totalPrice');
+
+    if (storedTotalPrice) {
+      this.totalPrice = JSON.parse(storedTotalPrice);
+      console.log(this.totalPrice);
+    }
+  }
 
   /**
    * @description This method is used to add a new plan
@@ -75,6 +89,10 @@ export class CheckoutComponent {
       domicilio: form.domicilio,
       productos: productos.map(producto => ({ codProducto: producto.codProducto })) // Asegúrate de que codProducto sea una cadena
     };
+
+    if (form.metodo == 'A domicilio') {
+      this.totalPrice += 8.52;
+    }
   
     console.log('Plan a enviar:', plan); // Verificar el contenido del plan antes de enviarlo
   

@@ -6,3 +6,8 @@ export const paymentTypes = [
     'Efectivo',
     'SINPE'
 ]
+
+export const paymentMethod = [
+    'Sucursal',
+    'A domicilio'
+]

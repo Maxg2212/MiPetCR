@@ -70,12 +70,30 @@
                 Este campo es requerido.
               </div>
             </div>
+            <div class="mb-4 mx-4">
+              <label for="metodoPago">Método</label>
+              <select class="form-select" formControlName="metodo">
+                <label for="metodo">Método</label>
+                <option [disabled]="true" value="">Método</option>
+                <option *ngFor="let metodo of paymentMethod" [value]="metodo">
+                  {{ metodo }}
+                </option>
+              </select>
+              <div *ngIf="newPayment.get('metodo')?.invalid && newPayment.get('metodo')?.touched" class="text-danger">
+                Este campo es requerido.
+              </div>
+            </div>
+            
+            <div class="py-4 text-center">
+              
+              <p>Total a pagar: {{ totalPrice }}</p>
+            </div>
             <div class="row d-flex justify-content-center">
               <div class="col-auto p-2">
-                <button class="btn btn-success" type="submit">Editar Perfil</button>
+                <button class="btn btn-success" type="submit">Pagar</button>
               </div>
               <div class="col-auto p-2">
-                <a href="/client-hub" type="button" class="btn btn-primary me-2">Volver</a>
+                <a href="/client-store" type="button" class="btn btn-primary me-2">Volver</a>
               </div>
             </div>
           </form>

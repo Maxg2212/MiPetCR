@@ -23,4 +23,5 @@ export interface PlanFormsI {
     canton: string | null;
     distrito: string | null;
     domicilio: string | null;
+    metodo: string | null;
 }
