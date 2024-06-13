@@ -156,7 +156,7 @@ namespace MiPetCR.DataBase_Resources
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarInfoUsuario]", conn);
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarInfoUsuarioL]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = correo_user.correo;
 
@@ -484,6 +484,43 @@ namespace MiPetCR.DataBase_Resources
 
         }
 
+        //Metodo para hacer login en cualquier vista de la web app
+        //Retorna un datatable con la informacion del usuario
+        public static bool ChangePassword(CredentiaslOp login_credentials)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+            //bool resultado_existe = false;
+
+
+            try
+            {
+
+                //Llamada a la funcion 
+                SqlCommand cmd = new SqlCommand("[dbo].[up_ActualizarContrasena]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //Parametros que recibe la funcion 
+                //cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = login_credentials.correo;
+                cmd.Parameters.AddWithValue("@contrasena", SqlDbType.VarChar).Value = Encryption.encrypt_password(login_credentials.contrasena);
+                //cmd.Parameters.AddWithValue("@resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
         //Metodo que permite hacer crear un nuevo cliente
         public static bool InsertMedicalHistory(HistorialMedicoModel historialmedico)
         {
@@ -499,6 +536,43 @@ namespace MiPetCR.DataBase_Resources
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 //cmd.Parameters.AddWithValue("@cedula", SqlDbType.Int).Value = client_nuevo.cedula;
+                cmd.Parameters.AddWithValue("@fecha", SqlDbType.Date).Value = historialmedico.fecha;
+                cmd.Parameters.AddWithValue("@detalles", SqlDbType.VarChar).Value = historialmedico.detalles;
+                cmd.Parameters.AddWithValue("@id_mascota", SqlDbType.Int).Value = historialmedico.id_mascota;
+                cmd.Parameters.AddWithValue("@cod_tratamiento", SqlDbType.VarChar).Value = historialmedico.cod_tratamiento;
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool UpdateMedicalHistory(HisstorialMedicoPutModel historialmedico)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_EditarHistorialMedico]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", SqlDbType.Int).Value = historialmedico.id_historial;
                 cmd.Parameters.AddWithValue("@fecha", SqlDbType.Date).Value = historialmedico.fecha;
                 cmd.Parameters.AddWithValue("@detalles", SqlDbType.VarChar).Value = historialmedico.detalles;
                 cmd.Parameters.AddWithValue("@id_mascota", SqlDbType.Int).Value = historialmedico.id_mascota;
@@ -692,6 +766,37 @@ namespace MiPetCR.DataBase_Resources
             }
         }
 
+        //Metodo que permite obtener historial compras
+        public static DataTable GetPurchasesHistory(Mascota_Dueno cedula_usuario)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarHistorialCompras]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@user_ced", SqlDbType.Int).Value = cedula_usuario.cedula;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         //Metodo que permite hacer editar un producto existente
         public static bool EditProduct(ProductsPostModel producto_nuevo)
         {
@@ -732,6 +837,143 @@ namespace MiPetCR.DataBase_Resources
                 conn.Close();
             }
 
+        }
+
+        //Metodo que permite obtener todos los citas
+        public static DataTable GetCitas()
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarCitas]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool InsertAppointment(CitasPostModel new_cita)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_InsertarCita]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                //cmd.Parameters.AddWithValue("@cedula", SqlDbType.Int).Value = client_nuevo.cedula;
+                cmd.Parameters.AddWithValue("@user_ced", SqlDbType.Int).Value = new_cita.user_ced;
+                cmd.Parameters.AddWithValue("@id_veterinaria ", SqlDbType.Int).Value = new_cita.veterinaria_id;
+                cmd.Parameters.AddWithValue("@id_mascota", SqlDbType.Int).Value = new_cita.mascota_id;
+                cmd.Parameters.AddWithValue("@fecha", SqlDbType.Date).Value = new_cita.fecha;
+                cmd.Parameters.AddWithValue("@hora_ingreso", SqlDbType.Time).Value = new_cita.hora_ingreso;
+                cmd.Parameters.AddWithValue("@hora_salida", SqlDbType.Time).Value = new_cita.hora_salida;
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool UpdateAppointment(CitasPutModel new_cita)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_EditarCita]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", SqlDbType.Int).Value = new_cita.cita_id;
+                cmd.Parameters.AddWithValue("@user_ced", SqlDbType.Int).Value = new_cita.user_ced;
+                cmd.Parameters.AddWithValue("@id_veterinaria ", SqlDbType.Int).Value = new_cita.veterinaria_id;
+                cmd.Parameters.AddWithValue("@id_mascota", SqlDbType.Int).Value = new_cita.mascota_id;
+                cmd.Parameters.AddWithValue("@fecha", SqlDbType.Date).Value = new_cita.fecha;
+                cmd.Parameters.AddWithValue("@hora_ingreso", SqlDbType.Time).Value = new_cita.hora_ingreso;
+                cmd.Parameters.AddWithValue("@hora_salida", SqlDbType.Time).Value = new_cita.hora_salida;
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        //Metodo que permite obtener todos los citas
+        public static DataTable DeleteCita(CitasIdModel id_cita)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_EliminarCita]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", SqlDbType.Int).Value = id_cita.cita_id;
+
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
 

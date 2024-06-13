@@ -37,7 +37,7 @@ namespace MiPetCR.Controllers
 
         //Metodo que permite crear una reservacion 
         //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
-        [HttpPut("update_mascota")]
+        [HttpPost("update_mascota")]
         public async Task<ActionResult<JSON_Object>> EditMascota(MascotaModel mascota_nuevo)
         {
             JSON_Object json = new JSON_Object("ok", null);
@@ -246,7 +246,7 @@ namespace MiPetCR.Controllers
 
         //Metodo que permite crear una reservacion 
         //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
-        [HttpPut("update_personal_info")]
+        [HttpPost("update_personal_info")]
         public async Task<ActionResult<JSON_Object>> UpdateClient(UserInfoModel userInfo)
         {
             JSON_Object json = new JSON_Object("ok", null);
