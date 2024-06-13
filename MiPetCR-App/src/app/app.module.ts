@@ -34,8 +34,26 @@ import { CheckoutComponent } from './view/checkout/checkout.component';
 import { PetHistoryComponent } from './view/pet-history/pet-history.component';
 import { PurchaseHistoryComponent } from './view/purchase-history/purchase-history.component';
 import { ViewBranchesComponent } from './view/view-branches/view-branches.component';
-
-
+import { AdministratorMenuComponent } from './view/administrator-menu/administrator-menu.component';
+import { AdministratorProductoMenuComponent } from './view/administrator-producto-menu/administrator-producto-menu.component';
+import { AdministratorSucursalMenuComponent } from './view/administrator-sucursal-menu/administrator-sucursal-menu.component';
+import { AdministratorCitasMenuComponent } from './view/administrator-citas-menu/administrator-citas-menu.component';
+import { AdministratorMostrarUsuariosComponent } from './view/administrator-mostrar-usuarios/administrator-mostrar-usuarios.component';
+import { AdministratorMostrarDuenosComponent } from './view/administrator-mostrar-duenos/administrator-mostrar-duenos.component';
+import { AdministratorMostrarProductosDeOrdenComponent } from './view/administrator-mostrar-productos-de-orden/administrator-mostrar-productos-de-orden.component';
+import { AdministratorMostrarOrdenesComponent } from './view/administrator-mostrar-ordenes/administrator-mostrar-ordenes.component';
+import { AdministratorSucursalCrearComponent } from './view/administrator-sucursal-crear/administrator-sucursal-crear.component';
+import { AdministratorSucursalBuscarComponent } from './view/administrator-sucursal-buscar/administrator-sucursal-buscar.component';
+import { AdministratorSucursalObtenerTodasComponent } from './view/administrator-sucursal-obtener-todas/administrator-sucursal-obtener-todas.component';
+import { AdministratorSucursalActualizarComponent } from './view/administrator-sucursal-actualizar/administrator-sucursal-actualizar.component';
+import { AdministratorSucursalEliminarComponent } from './view/administrator-sucursal-eliminar/administrator-sucursal-eliminar.component';
+import { AdministratorCitasCrearComponent } from './view/administrator-citas-crear/administrator-citas-crear.component';
+import { AdministratorCitasMostrarComponent } from './view/administrator-citas-mostrar/administrator-citas-mostrar.component';
+import { AdministratorCitasActualizarComponent } from './view/administrator-citas-actualizar/administrator-citas-actualizar.component';
+import { AdministratorCitasEliminarComponent } from './view/administrator-citas-eliminar/administrator-citas-eliminar.component';
+import { AdministratorProductosCrearComponent } from './view/administrator-productos-crear/administrator-productos-crear.component';
+import { AdministratorProductosActualizarComponent } from './view/administrator-productos-actualizar/administrator-productos-actualizar.component';
+import { AdministratorProductosMostrarComponent } from './view/administrator-productos-mostrar/administrator-productos-mostrar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +85,25 @@ import { ViewBranchesComponent } from './view/view-branches/view-branches.compon
     PetHistoryComponent,
     PurchaseHistoryComponent,
     ViewBranchesComponent,
+    AdministratorMenuComponent,
+    AdministratorProductoMenuComponent,
+    AdministratorSucursalMenuComponent,
+    AdministratorCitasMenuComponent,
+    AdministratorMostrarUsuariosComponent,
+    AdministratorMostrarDuenosComponent,
+    AdministratorMostrarOrdenesComponent,
+    AdministratorSucursalCrearComponent,
+    AdministratorSucursalBuscarComponent,
+    AdministratorSucursalObtenerTodasComponent,
+    AdministratorSucursalActualizarComponent,
+    AdministratorSucursalEliminarComponent,
+    AdministratorCitasCrearComponent,
+    AdministratorCitasMostrarComponent,
+    AdministratorCitasActualizarComponent,
+    AdministratorCitasEliminarComponent,
+    AdministratorProductosCrearComponent,
+    AdministratorProductosActualizarComponent,
+    AdministratorProductosMostrarComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,6 +166,82 @@ import { ViewBranchesComponent } from './view/view-branches/view-branches.compon
       {
         path: 'veterinario-consultar-expediente-medico',
         component: VeterinarioConsultarExpedienteMedicoComponent
+      },
+      {
+        path: 'administrator-menu',
+        component: AdministratorMenuComponent
+      },
+      {
+        path: 'administrator-mostrar-usuarios',
+        component: AdministratorMostrarUsuariosComponent
+      },
+      {
+        path: 'administrator-mostrar-duenos',
+        component: AdministratorMostrarDuenosComponent
+      },
+      {
+        path: 'administrator-mostrar-productos-de-orden',
+        component: AdministratorMostrarProductosDeOrdenComponent
+      },
+      {
+        path: 'administrator-mostrar-ordenes',
+        component: AdministratorMostrarOrdenesComponent
+      },
+      {
+        path: 'administrator-producto-menu',
+        component: AdministratorProductoMenuComponent
+      },
+      {
+        path: 'administrator-producto-crear',
+        component: AdministratorProductosCrearComponent
+      },
+      {
+        path: 'administrator-producto-mostrar',
+        component: AdministratorProductosMostrarComponent
+      },
+      {
+        path: 'administrator-producto-actualizar',
+        component: AdministratorProductosActualizarComponent
+      },
+      {
+        path: 'administrator-sucursal-crear',
+        component: AdministratorSucursalCrearComponent
+      },
+      {
+        path: 'administrator-sucursal-buscar',
+        component: AdministratorSucursalBuscarComponent
+      },
+      {
+        path: 'administrator-sucursal-mostrar',
+        component: AdministratorSucursalObtenerTodasComponent
+      },
+      {
+        path: 'administrator-sucursal-actualizar',
+        component: AdministratorSucursalActualizarComponent
+      },
+      {
+        path: 'administrator-sucursal-eliminar',
+        component: AdministratorSucursalEliminarComponent
+      },
+      {
+        path: 'administrator-citas-menu',
+        component: AdministratorCitasMenuComponent
+      },
+      {
+        path: 'administrator-citas-crear',
+        component: AdministratorCitasCrearComponent
+      },
+      {
+        path: 'administrator-citas-mostrar',
+        component: AdministratorCitasMostrarComponent
+      },
+      {
+        path: 'administrator-citas-actualizar',
+        component: AdministratorCitasActualizarComponent
+      },
+      {
+        path: 'administrator-citas-eliminar',
+        component: AdministratorCitasEliminarComponent
       },
       { 
         path: 'store', 

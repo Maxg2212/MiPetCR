@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.custom-btn {
+    background-color: #1b0de2;
+    color: white;
+    border: none;
+}

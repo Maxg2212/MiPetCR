@@ -10,7 +10,7 @@ namespace MiPetCR.DataBase_Resources
 {
     public class DatabaseConnection
     {
-        public static string cadenaConexion = "Data Source=DESKTOP-ME3D80M;Initial Catalog=MyPetsCR;Persist Security Info=True;User ID=sa;Password=1234";//This
+        public static string cadenaConexion = "Data Source=DESKTOP-GO0OT7L\\SQLEXPRESS;Initial Catalog=MyPetsCR;Persist Security Info=True;User ID=sa;Password=123";//This
 
         //Metodo que permite hacer crear un nuevo cliente
         public static bool CreateClient(ClientModel client_nuevo)
