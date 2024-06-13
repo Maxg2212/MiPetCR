@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using Azure.Core;
 
 namespace MiPetCR.DataBase_Resources
 {
@@ -494,14 +495,14 @@ namespace MiPetCR.DataBase_Resources
 
             try
             {
-
+                conn.Open();
                 //Llamada a la funcion 
                 SqlCommand cmd = new SqlCommand("[dbo].[up_ActualizarContrasena]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 //Parametros que recibe la funcion 
-                //cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = login_credentials.correo;
-                cmd.Parameters.AddWithValue("@contrasena", SqlDbType.VarChar).Value = Encryption.encrypt_password(login_credentials.contrasena);
+                cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = login_credentials.correo;
+                cmd.Parameters.AddWithValue("@contrasena", SqlDbType.VarChar).Value = login_credentials.contrasena;
                 //cmd.Parameters.AddWithValue("@resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
 
                 int i = cmd.ExecuteNonQuery();
@@ -923,7 +924,7 @@ namespace MiPetCR.DataBase_Resources
 
                 cmd.Parameters.AddWithValue("@id", SqlDbType.Int).Value = new_cita.cita_id;
                 cmd.Parameters.AddWithValue("@user_ced", SqlDbType.Int).Value = new_cita.user_ced;
-                cmd.Parameters.AddWithValue("@id_veterinaria ", SqlDbType.Int).Value = new_cita.veterinaria_id;
+                cmd.Parameters.AddWithValue("@id_veterinaria", SqlDbType.Int).Value = new_cita.veterinaria_id;
                 cmd.Parameters.AddWithValue("@id_mascota", SqlDbType.Int).Value = new_cita.mascota_id;
                 cmd.Parameters.AddWithValue("@fecha", SqlDbType.Date).Value = new_cita.fecha;
                 cmd.Parameters.AddWithValue("@hora_ingreso", SqlDbType.Time).Value = new_cita.hora_ingreso;
@@ -947,7 +948,7 @@ namespace MiPetCR.DataBase_Resources
         }
 
         //Metodo que permite obtener todos los citas
-        public static DataTable DeleteCita(CitasIdModel id_cita)
+        public static bool DeleteCita(CitasIdModel id_cita)
         {
             SqlConnection conn = new SqlConnection(cadenaConexion);
 
@@ -958,22 +959,69 @@ namespace MiPetCR.DataBase_Resources
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@id", SqlDbType.Int).Value = id_cita.cita_id;
 
-
-                DataTable tabla = new DataTable();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(tabla);
-
-                return tabla;
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return null;
+                return false;
             }
             finally
             {
                 conn.Close();
             }
+        }
+
+        //Metodo que permite hacer crear un nuevo cliente
+        public static bool InsertOrdenCompra(OrdenCompraRequest new_order)
+        {
+
+
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[up_InsertarOrdenCompra]", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@userCed", SqlDbType.Int).Value = new_order.UserCed;
+                cmd.Parameters.AddWithValue("@metodoPago", SqlDbType.VarChar).Value = new_order.MetodoPago;
+                cmd.Parameters.AddWithValue("@correoUsuario", SqlDbType.VarChar).Value = new_order.CorreoUsuario;
+                cmd.Parameters.AddWithValue("@telefonoUsuario", SqlDbType.Int).Value = new_order.TelefonoUsuario;
+                cmd.Parameters.AddWithValue("@provincia", SqlDbType.VarChar).Value = new_order.Provincia;
+                cmd.Parameters.AddWithValue("@canton", SqlDbType.VarChar).Value = new_order.Canton;
+                cmd.Parameters.AddWithValue("@distrito", SqlDbType.VarChar).Value = new_order.Distrito;
+                cmd.Parameters.AddWithValue("@domicilio", SqlDbType.VarChar).Value = new_order.Domicilio;
+                // Crear DataTable para los productos
+                DataTable productosTable = new DataTable();
+                productosTable.Columns.Add("cod_producto", typeof(string));
+                foreach (var producto in new_order.Productos)
+                {
+                    productosTable.Rows.Add(producto.CodProducto);
+                }
+                SqlParameter productosParameter = cmd.Parameters.AddWithValue("@productos", productosTable);
+                productosParameter.SqlDbType = SqlDbType.Structured;
+                productosParameter.TypeName = "ListaComprasType";
+
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
         }
 
 
