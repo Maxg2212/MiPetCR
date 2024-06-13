@@ -156,7 +156,7 @@ namespace MiPetCR.DataBase_Resources
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarInfoUsuario]", conn);
+                SqlCommand cmd = new SqlCommand("[dbo].[up_RecuperarInfoUsuarioL]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = correo_user.correo;
 

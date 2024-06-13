@@ -52,7 +52,7 @@ namespace MiPetCR.Controllers
         //Metodo para autenticar al usuario
         //Se recibe como parametro un JSON con las credenciales del paciente (correo y password) 
         //Se retorna un JSON con la informacion del usuario si este es encontrado en la base y la contraseña hace match con la que se proporciona 
-        [HttpPut("change_password")]
+        [HttpPost("change_password")]
         public async Task<ActionResult<JSON_Object>> ChangePassword(CredentiaslOp users_credentials)
         {
             //revisa en la base de datos si existe el paciente y retorna la informacion del paciente
