@@ -104,10 +104,10 @@ BEGIN
 END
 
 -- >>> Procedimiento para obtener la información de un usuario
-IF OBJECT_ID(N'dbo.up_RecuperarInfoUsuario', N'P') IS NOT NULL
-    DROP PROCEDURE dbo.up_RecuperarInfoUsuario;
+IF OBJECT_ID(N'dbo.up_RecuperarInfoUsuarioL', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.up_RecuperarInfoUsuarioL;
 GO
-CREATE PROCEDURE up_RecuperarInfoUsuario
+CREATE PROCEDURE up_RecuperarInfoUsuarioL
     @correo VARCHAR(30)
 AS
 BEGIN
