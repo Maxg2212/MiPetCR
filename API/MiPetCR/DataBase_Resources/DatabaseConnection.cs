@@ -484,6 +484,43 @@ namespace MiPetCR.DataBase_Resources
 
         }
 
+        //Metodo para hacer login en cualquier vista de la web app
+        //Retorna un datatable con la informacion del usuario
+        public static bool ChangePassword(CredentiaslOp login_credentials)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+            //bool resultado_existe = false;
+
+
+            try
+            {
+
+                //Llamada a la funcion 
+                SqlCommand cmd = new SqlCommand("[dbo].[up_ActualizarContrasena]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //Parametros que recibe la funcion 
+                //cmd.Parameters.AddWithValue("@correo", SqlDbType.VarChar).Value = login_credentials.correo;
+                cmd.Parameters.AddWithValue("@contrasena", SqlDbType.VarChar).Value = Encryption.encrypt_password(login_credentials.contrasena);
+                //cmd.Parameters.AddWithValue("@resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;//Funciona
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
         //Metodo que permite hacer crear un nuevo cliente
         public static bool InsertMedicalHistory(HistorialMedicoModel historialmedico)
         {
