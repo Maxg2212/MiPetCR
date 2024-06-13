@@ -530,5 +530,33 @@ namespace MiPetCR.Controllers
         }
 
 
+        //Metodo que devuelve la ultima reservacion insertada para actualizar la fecha de salida del paciente 
+        [HttpPost("delete_appointment")]
+        public async Task<ActionResult<JSON_Object>> DeleteCita(CitasIdModel id_cita)
+        {
+            JSON_Object json = new JSON_Object("ok", null);
+            //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
+            bool var = DatabaseConnection.DeleteCita(id_cita);
+            Console.WriteLine(var);
+            try
+            {
+                //El metodo retorna una estructura de tipo DataTable que contiene la informacion de la 
+                //ultima reservacion insertada
+
+                json.status = "ok";
+                return Ok(json);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(json);
+            }
+
+
+        }
+
+
     }
 }

@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 using System.Data.SqlClient;
 using MiPetCR.Models;
 using MiPetCR.DataBase_Resources;
+using System.Net.Mail;
+using System.Net;
 
 namespace MiPetCR.Controllers
 {
@@ -64,6 +66,7 @@ namespace MiPetCR.Controllers
 
                 if (allUser)
                 {
+                    SendConfirmationEmail(users_credentials.correo);
                     json.result = allUser;
                     json.status = "ok";
                     return Ok(json);
@@ -82,6 +85,40 @@ namespace MiPetCR.Controllers
                 Console.WriteLine("El paciente no se encuentra en base de datos, debe crearse una cuenta");
                 json.result = "El paciente no se encuentra en base de datos, debe crearse una cuenta";
                 return BadRequest(json);
+            }
+
+        }
+
+        //Metodo que permite crear una reservacion 
+        //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
+        [HttpPost("send_confirmation_email")]
+        public async Task<ActionResult<JSON_Object>> SendConfirmationEmail(string client_email)
+        {
+            JSON_Object json = new JSON_Object("ok", null);
+            //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
+            var fromAddress = new MailAddress("mypetcrapi@gmail.com", "From mypetcr");
+            var toAddress = new MailAddress(client_email, " ");
+            const string fromPassword = "odct hpsq xqsp jgov";
+            const string subject = "Confirmacion de compra";
+            const string body = "Su clave ha sido cambiada exitosamente!!";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+                return Ok(json);
             }
 
         }

@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.SqlClient;
 using MiPetCR.Models;
 using MiPetCR.DataBase_Resources;
+using System.Net;
+using System.Net.Mail;
 
 namespace MiPetCR.Controllers
 {
@@ -11,7 +13,7 @@ namespace MiPetCR.Controllers
     [Route("api")]
     public class ClientController : ControllerBase
     {
-        
+
 
 
         //Metodo que permite crear una reservacion 
@@ -81,7 +83,7 @@ namespace MiPetCR.Controllers
                     mascota_db.especie = row["especie"].ToString();
                     mascota_db.raza = row["raza"].ToString();
                     mascota_db.nombre = row["nombre"].ToString();
-                    
+
 
                     all_pets_list.Add(mascota_db);
 
@@ -121,7 +123,7 @@ namespace MiPetCR.Controllers
 
                     HistorialMedicoGetModel historialmedico_get = new HistorialMedicoGetModel();
                     int id_historial_int = Convert.ToInt32(row["id"].ToString());
-                    
+
 
                     Console.WriteLine(id_historial_int);
 
@@ -219,7 +221,7 @@ namespace MiPetCR.Controllers
                     int telefono_int = Convert.ToInt32(row["telefono"].ToString());
 
 
-                    user_db.cedula = cedula_int;                   
+                    user_db.cedula = cedula_int;
                     user_db.nombre = row["nombre"].ToString();
                     user_db.correo = row["correo"].ToString();
                     user_db.telefono = telefono_int;
@@ -265,5 +267,60 @@ namespace MiPetCR.Controllers
 
         }
 
+
+        //Metodo que permite crear una reservacion 
+        //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
+        [HttpPost("send_email")]
+        public async Task<ActionResult<JSON_Object>> SendEmail(CorreoModel client_email)
+        {
+            JSON_Object json = new JSON_Object("ok", null);
+            //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
+            var fromAddress = new MailAddress("mypetcrapi@gmail.com", "From mypetcr");
+            var toAddress = new MailAddress(client_email.correo, " ");
+            const string fromPassword = "odct hpsq xqsp jgov";
+            const string subject = "Confirmacion de compra";
+            const string body = "Su compra se ha finalizado correctamente!!";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+                return Ok(json);
+            }
+
+        }
+
+        //Metodo que permite crear una reservacion 
+        //Se recibe como parametro un JSON que contiene el numero de cedula del paciente y la fecha de reservacion 
+        [HttpPost("create_purchases_order")]
+        public async Task<ActionResult<JSON_Object>> InsertPurchasesOrder(OrdenCompraRequest new_order)
+        {
+            JSON_Object json = new JSON_Object("ok", null);
+            //Se ejecuta el metodo que llama a un stored procedure en SQL para agregar una tupla que representa la reservacion 
+            bool var = DatabaseConnection.InsertOrdenCompra(new_order);
+            Console.WriteLine(var);
+            if (var)
+            {
+                return Ok(json);
+            }
+            else
+            {
+                json.status = "error";
+                return BadRequest(json);
+            }
+
+        }
     }
-}
+    }
