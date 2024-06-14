@@ -25,7 +25,7 @@ export class CheckoutClientComponent {
   newPayment = new FormGroup({
     userCed: new FormControl(0, Validators.required),
     metodoPago: new FormControl('', Validators.required),
-    correoUsuario: new FormControl(0, Validators.required),
+    correoUsuario: new FormControl('', Validators.required),
     telefonoUsuario: new FormControl(0, Validators.required),
     provincia: new FormControl('', Validators.required),
     canton: new FormControl('', Validators.required),
@@ -66,10 +66,10 @@ export class CheckoutClientComponent {
   
     // Crear el objeto PlanI combinando los datos del form y del client
     const plan: PlanI = {
-      userCed: client.cedula, // Asegúrate de que userCed sea un número
+      userCed: form.userCed, // Asegúrate de que userCed sea un número
       metodoPago: form.metodoPago,
-      correoUsuario: correoUsuario,
-      telefonoUsuario: client.telefono, // Asegúrate de que telefonoUsuario sea una cadena
+      correoUsuario: form.correoUsuario,
+      telefonoUsuario: form.telefonoUsuario, // Asegúrate de que telefonoUsuario sea una cadena
       provincia: form.provincia,
       canton: form.canton,
       distrito: form.distrito,
