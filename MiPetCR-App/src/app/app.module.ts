@@ -58,6 +58,7 @@ import { AdministratorProductosMostrarComponent } from './view/administrator-pro
 import { AdministratorMostrarExpedientesComponent } from './view/administrator-mostrar-expedientes/administrator-mostrar-expedientes.component';
 import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.component';
 import { AdminService } from './adminService/adminService';
+import { CheckoutClientComponent } from './checkout-client/checkout-client.component';
 =======
 import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.component';
 import { CheckoutClientComponent } from './checkout-client/checkout-client.component';
@@ -117,6 +118,7 @@ import { AdministratorMostrarExpedientesComponent } from './view/administrator-m
     AdministratorProductosActualizarComponent,
     AdministratorProductosMostrarComponent,
     ViewCartGuestComponent,
+    CheckoutClientComponent,
 <<<<<<< Updated upstream
 =======
     CheckoutClientComponent,

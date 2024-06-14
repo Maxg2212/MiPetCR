@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MiPetCR")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d83f8e70c36b5c563c284a634576177749cec7e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+989ab0931fb9e37980410714c925b533e86e6e2a")]
 [assembly: System.Reflection.AssemblyProductAttribute("MiPetCR")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MiPetCR")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
