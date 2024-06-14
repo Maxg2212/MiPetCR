@@ -25,3 +25,15 @@ export interface PlanFormsI {
     domicilio: string | null;
     metodo: string | null;
 }
+
+export interface PlanFormsGuestI {
+    userCed: number | null;
+    metodoPago: string | null;
+    correoUsuario: string | null;
+    telefonoUsuario: number | null;
+    provincia: string | null;
+    canton: string | null;
+    distrito: string | null;
+    domicilio: string | null;
+    metodo: string | null;
+}

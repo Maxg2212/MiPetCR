@@ -1,1 +1,42 @@
-<p>view-cart-guest works!</p>
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #e2860d;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="#">MiPetCR</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2"></ul>
+            </div>
+            <div class="col-0">
+              <a href="/view-cart" type="button" class="btn btn-outline-light">Carrito</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row py-4">
+          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-4 text-center">
+            <h1>Carrito de Compras</h1>
+          </div>
+        </div>
+    
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-2 text-center"> 
+          <ul class="list-unstyled centered-list">
+            <li *ngFor="let price of productPrices">Precio: {{ price }}</li>
+          </ul>
+    
+          <div class="py-4 text-center">
+            <p>Total a pagar: {{ totalPrice }}</p>
+          </div>
+    
+          <div class="row d-flex justify-content-center">
+            <div class="col-auto p-2">
+              <a href="/checkout" type="button" class="btn btn-primary">Comprar</a>
+            </div>
+            <div class="col-auto p-2">
+              <button class="btn btn-primary" (click)="limpiar()">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+</body>
