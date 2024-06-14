@@ -1,8 +1,8 @@
-<body>
+ <body>
 
     <app-navbar></app-navbar>
 
-    <div class="container my-3">
+    <form (ngSubmit)="createProduct()"><div class="container my-3">
             
         <div class="card-body">
             
@@ -14,7 +14,8 @@
                     </div>
                             <div class="mb-4 mx-4">
                                 <label for="Codigo" class="form-label">Codigo</label>
-                                <input 
+                                <input
+                                    [(ngModel)]="producto.codigo" name="codigo"
                                     type="text" 
                                     class="form-control" 
                                     placeholder="Codigo" />
@@ -22,6 +23,7 @@
                             <div class="mb-4 mx-4">
                                 <label for="Descripcion" class="form-label">Descripcion</label>
                                 <input 
+                                    [(ngModel)]="producto.descripcion" name="descripcion"
                                     type="text" 
                                     class="form-control" 
                                     placeholder="Descripcion" />
@@ -29,6 +31,7 @@
                             <div class="mb-4 mx-4">
                                 <label for="Marca" class="form-label">Marca</label>
                                 <input 
+                                    [(ngModel)]="producto.marca" name="marca"
                                     type="text" 
                                     class="form-control" 
                                     placeholder="Marca" />
@@ -36,6 +39,7 @@
                             <div class="mb-4 mx-4">
                                 <label for="Precio" class="form-label">Precio</label>
                                 <input 
+                                    [(ngModel)]="producto.precio" name="precio"
                                     type="number" 
                                     class="form-control" 
                                     placeholder="Precio" />
@@ -43,6 +47,7 @@
                             <div class="mb-4 mx-4">
                                 <label for="IVA" class="form-label">IVA</label>
                                 <input 
+                                [(ngModel)]="producto.iva" name="iva"
                                     type="number" 
                                     class="form-control" 
                                     placeholder="IVA" />
@@ -50,6 +55,7 @@
                             <div class="mb-4 mx-4">
                                 <label for="Cantidad Disponible" class="form-label">Cantidad Disponible</label>
                                 <input 
+                                    [(ngModel)]="producto.cantidad_disponible" name="cantidad_disponible"
                                     type="number" 
                                     class="form-control" 
                                     placeholder="Cantidad Disponible" />
@@ -57,13 +63,18 @@
                             <div class="mb-4 mx-4">
                                 <label for="Categoria" class="form-label">Categoria</label>
                                 <input 
+                                    [(ngModel)]="producto.categoria" name="categoria"
                                     type="text" 
                                     class="form-control" 
                                     placeholder="Categoria" />
                             </div>
                             <div class="mb-4 mx-4">
                                 <label for="Procedimiento Medico" class="form-label">Procedimiento Medico</label>
-                                <input type="checkbox" id="trueFalseCheckbox" name="trueFalseCheckbox">
+                                <input 
+                                    [(ngModel)]="producto.proc_med" name="proc_med"
+                                    type="checkbox" 
+                                    id="trueFalseCheckbox" 
+                                    >
                             </div>
                             <div class="row center">
                                 <button class="btn btn-success" type="submit">Crear</button>
@@ -71,5 +82,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div></form>
     </body>

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { User } from "../view/administrator-mostrar-usuarios/users";
+import { Product } from "../view/administrator-productos-crear/producto";
 
 @Injectable()
 export class AdminService {
@@ -38,6 +38,11 @@ export class AdminService {
   getAllFiles(): Observable<any> {
     const url = this.path + 'get_all_files';
     return this._http.get<any>(url);
+  }
+
+  createProduct(product:Product):Observable<Product>{
+    const url = this.path + 'create_product';
+    return this._http.post<Product>(url,product);
   }
 
 }

@@ -182,7 +182,6 @@ CREATE TABLE UsuarioInvitado (
     id_orden NUMERIC NOT NULL, -- Identificación de la orden de compra.
     correo VARCHAR(30) NOT NULL, -- Correo electrónico del usuario invitado.
     telefono NUMERIC(8) NOT NULL, -- Teléfono del usuario invitado.
-    CONSTRAINT UsuarioInvitado_PK PRIMARY KEY(cedula), -- Llave primaria en 'cedula'.
     CONSTRAINT UsuarioInvitado_FK FOREIGN KEY(id_orden) REFERENCES OrdenCompra(id) -- Llave foránea a 'OrdenCompra'.
 );
 
