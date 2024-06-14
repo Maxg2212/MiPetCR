@@ -1,62 +1,71 @@
 <body>
 
     <app-navbar></app-navbar>
-
-    <div class="container my-3">
+    <form (ngSubmit)="createAppointment()">
+        <div class="container my-3">
             
-        <div class="card-body">
-            
-            <div class="row">
-
-                <div class="col-12 ">
-                    <div class="h2 text-center">
-                        Crear Cita de Revisión
+            <div class="card-body">
+                
+                <div class="row">
+    
+                    <div class="col-12 ">
+                        <div class="h2 text-center">
+                            Crear Cita de Revisión
+                        </div>
+                                <div class="mb-4 mx-4">
+                                    <label for="Cliente ID" class="form-label">Cliente ID</label>
+                                    <input
+                                        [(ngModel)]="cita.user_ced" name="user_ced"
+                                        type="number" 
+                                        class="form-control" 
+                                        placeholder="Cliente ID" />
+                                </div>
+                                <div class="mb-4 mx-4">
+                                    <label for="Veterinario ID" class="form-label">Veterinario ID</label>
+                                    <input
+                                        [(ngModel)]="cita.veterinaria_id" name="veterinaria_id"
+                                        type="number"
+                                        class="form-control" 
+                                        placeholder="Veterinario ID" />
+                                </div>
+                                <div class="mb-4 mx-4">
+                                    <label for="Mascota ID" class="form-label">Mascota ID</label>
+                                    <input
+                                        [(ngModel)]="cita.mascota_id" name="mascota_id"
+                                        type="number"
+                                        class="form-control" 
+                                        placeholder="Mascota ID" />
+                                </div>
+                                <div class="mb-4 mx-4">
+                                    <label for="Fecha" class="form-label">Fecha</label>
+                                    <input 
+                                        [(ngModel)]="cita.fecha" name="fecha"
+                                        type="datetime-local"
+                                        class="form-control" 
+                                        placeholder="Fecha" />
+                                </div>
+                                <div class="mb-4 mx-4">
+                                    <label for="Hora" class="form-label">Hora Ingreso</label>
+                                    <input
+                                        [(ngModel)]="cita.hora_ingreso" name="hora_ingreso"
+                                        type="time"
+                                        class="form-control" 
+                                        placeholder="Hora" />
+                                </div>
+                                <div class="mb-4 mx-4">
+                                    <label for="Hora" class="form-label">Hora Salida</label>
+                                    <input
+                                        [(ngModel)]="cita.hora_salida" name="hora_salida"
+                                        type="time"
+                                        class="form-control" 
+                                        placeholder="Hora" />
+                                </div>
+                                <div class="row center">
+                                    <button class="btn btn-success" type="submit">Agendar</button>
+                                </div>
                     </div>
-                            <div class="mb-4 mx-4">
-                                <label for="Cliente ID" class="form-label">Cliente ID</label>
-                                <input 
-                                    type="number" 
-                                    formControlName="Cliente ID"
-                                    class="form-control" 
-                                    placeholder="Cliente ID" />
-                            </div>
-                            <div class="mb-4 mx-4">
-                                <label for="Veterinario ID" class="form-label">Veterinario ID</label>
-                                <input 
-                                    type="number" 
-                                    formControlName="Veterinario ID"
-                                    class="form-control" 
-                                    placeholder="Veterinario ID" />
-                            </div>
-                            <div class="mb-4 mx-4">
-                                <label for="Fecha" class="form-label">Fecha</label>
-                                <input 
-                                    type="text" 
-                                    formControlName="Fecha"
-                                    class="form-control" 
-                                    placeholder="Fecha" />
-                            </div>
-                            <div class="mb-4 mx-4">
-                                <label for="Hora" class="form-label">Hora Ingreso</label>
-                                <input 
-                                    type="text" 
-                                    formControlName="Hora"
-                                    class="form-control" 
-                                    placeholder="Hora" />
-                            </div>
-                            <div class="mb-4 mx-4">
-                                <label for="Hora" class="form-label">Hora Salida</label>
-                                <input 
-                                    type="text" 
-                                    formControlName="Hora"
-                                    class="form-control" 
-                                    placeholder="Hora" />
-                            </div>
-                            <div class="row center">
-                                <button class="btn btn-success" type="submit">Agendar</button>
-                            </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     </body>
