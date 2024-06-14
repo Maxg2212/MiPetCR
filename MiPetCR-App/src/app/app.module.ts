@@ -54,13 +54,9 @@ import { AdministratorCitasEliminarComponent } from './view/administrator-citas-
 import { AdministratorProductosCrearComponent } from './view/administrator-productos-crear/administrator-productos-crear.component';
 import { AdministratorProductosActualizarComponent } from './view/administrator-productos-actualizar/administrator-productos-actualizar.component';
 import { AdministratorProductosMostrarComponent } from './view/administrator-productos-mostrar/administrator-productos-mostrar.component';
-<<<<<<< HEAD
-import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.component';
-=======
-import {AdminService} from '../app/adminService/adminService';
 import { AdministratorMostrarExpedientesComponent } from './view/administrator-mostrar-expedientes/administrator-mostrar-expedientes.component';
-
->>>>>>> e7dd998f18c32b3a3c28cf5ff13dac246b3c1a23
+import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.component';
+import { AdminService } from './adminService/adminService';
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,6 +95,7 @@ import { AdministratorMostrarExpedientesComponent } from './view/administrator-m
     AdministratorMostrarUsuariosComponent,
     AdministratorMostrarDuenosComponent,
     AdministratorMostrarOrdenesComponent,
+    AdministratorMostrarExpedientesComponent,
     AdministratorSucursalCrearComponent,
     AdministratorSucursalBuscarComponent,
     AdministratorSucursalObtenerTodasComponent,
@@ -111,11 +108,7 @@ import { AdministratorMostrarExpedientesComponent } from './view/administrator-m
     AdministratorProductosCrearComponent,
     AdministratorProductosActualizarComponent,
     AdministratorProductosMostrarComponent,
-<<<<<<< HEAD
     ViewCartGuestComponent,
-=======
-    AdministratorMostrarExpedientesComponent,
->>>>>>> e7dd998f18c32b3a3c28cf5ff13dac246b3c1a23
   ],
   imports: [
     BrowserModule,
@@ -189,12 +182,12 @@ import { AdministratorMostrarExpedientesComponent } from './view/administrator-m
         component: AdministratorMostrarUsuariosComponent
       },
       {
-        path: 'administrator-mostrar-duenos',
-        component: AdministratorMostrarDuenosComponent
-      },
-      {
         path: 'administrator-mostrar-expedientes',
         component: AdministratorMostrarExpedientesComponent
+      },
+      {
+        path: 'administrator-mostrar-duenos',
+        component: AdministratorMostrarDuenosComponent
       },
       {
         path: 'administrator-mostrar-ordenes',
