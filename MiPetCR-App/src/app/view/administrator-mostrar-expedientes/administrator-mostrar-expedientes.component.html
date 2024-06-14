@@ -1,0 +1,25 @@
+<table>
+    <thead>
+      <tr>
+        <th>Nombre Dueño</th>
+        <th>Nombre Mascota</th>
+        <th>Especie</th>
+        <th>Raza</th>
+        <th>Descripcion</th>
+        <th>Fecha</th>
+        <th>Detalles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let expediente of expedientes.result">
+        <td>{{ expediente.nombre_dueno }}</td>
+        <td>{{ expediente.nombre_mascota }}</td>
+        <td>{{ expediente.especie }}</td>
+        <td>{{ expediente.raza }}</td>
+        <td>{{ expediente.descripcion }}</td>
+        <td>{{ expediente.fecha }}</td>
+        <td>{{ expediente.detalles }}</td>
+      </tr>
+    </tbody>
+</table>
+  

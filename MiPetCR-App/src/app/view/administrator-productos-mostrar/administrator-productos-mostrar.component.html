@@ -1,1 +1,23 @@
-<p>administrator-productos-mostrar works!</p>
+<table>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Descripción</th>
+        <th>Marca</th>
+        <th>Precio</th>
+        <th>Catergoría</th>
+        <th>Cantidad Disponible</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products.result">
+        <td>{{ product.codigo }}</td>
+        <td>{{ product.descripcion }}</td>
+        <td>{{ product.marca }}</td>
+        <td>{{ product.precio }}</td>
+        <td>{{ product.categoria }}</td>
+        <td>{{ product.cantidad_disponible }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

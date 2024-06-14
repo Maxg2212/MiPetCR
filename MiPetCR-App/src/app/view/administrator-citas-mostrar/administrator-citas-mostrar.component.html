@@ -1,1 +1,27 @@
-<p>administrator-citas-mostrar works!</p>
+<table>
+    <thead>
+      <tr>
+        <th>cita_id</th>
+        <th>nombre_usuario</th>
+        <th>nombre_mascota</th>
+        <th>provincia</th>
+        <th>canton</th>
+        <th>fecha</th>
+        <th>hora_ingreso</th>
+        <th>hora_salida</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of appointments.result">
+        <td>{{ order.cita_id }}</td>
+        <td>{{ order.nombre_usuario }}</td>
+        <td>{{ order.nombre_mascota }}</td>
+        <td>{{ order.provincia }}</td>
+        <td>{{ order.canton }}</td>
+        <td>{{ order.fecha }}</td>
+        <td>{{ order.hora_ingreso }}</td>
+        <td>{{ order.hora_salida }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

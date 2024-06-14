@@ -1,1 +1,20 @@
-<p>administrator-sucursal-obtener-todas works!</p>
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Provincia</th>
+        <th>Canton</th>
+        <th>Distrito</th>
+        <th>Domicilio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let branch of branches.result">
+        <td>{{ branch.branch_id }}</td>
+        <td>{{ branch.provincia }}</td>
+        <td>{{ branch.canton }}</td>
+        <td>{{ branch.distrito }}</td>
+        <td>{{ branch.domicilio }}</td>
+      </tr>
+    </tbody>
+  </table>
