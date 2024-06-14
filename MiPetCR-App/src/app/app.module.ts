@@ -54,9 +54,17 @@ import { AdministratorCitasEliminarComponent } from './view/administrator-citas-
 import { AdministratorProductosCrearComponent } from './view/administrator-productos-crear/administrator-productos-crear.component';
 import { AdministratorProductosActualizarComponent } from './view/administrator-productos-actualizar/administrator-productos-actualizar.component';
 import { AdministratorProductosMostrarComponent } from './view/administrator-productos-mostrar/administrator-productos-mostrar.component';
+<<<<<<< Updated upstream
 import { AdministratorMostrarExpedientesComponent } from './view/administrator-mostrar-expedientes/administrator-mostrar-expedientes.component';
 import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.component';
 import { AdminService } from './adminService/adminService';
+=======
+import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.component';
+import { CheckoutClientComponent } from './checkout-client/checkout-client.component';
+import {AdminService} from '../app/adminService/adminService';
+import { AdministratorMostrarExpedientesComponent } from './view/administrator-mostrar-expedientes/administrator-mostrar-expedientes.component';
+
+>>>>>>> Stashed changes
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,6 +117,11 @@ import { AdminService } from './adminService/adminService';
     AdministratorProductosActualizarComponent,
     AdministratorProductosMostrarComponent,
     ViewCartGuestComponent,
+<<<<<<< Updated upstream
+=======
+    CheckoutClientComponent,
+    AdministratorMostrarExpedientesComponent
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
@@ -300,6 +313,10 @@ import { AdminService } from './adminService/adminService';
       { 
         path: 'view-cart-guest', 
         component: ViewCartGuestComponent 
+      },
+      { 
+        path: 'checkout-client', 
+        component: CheckoutClientComponent 
       }
     ]),
   ],
