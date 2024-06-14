@@ -36,7 +36,7 @@ export class LoginVeterinarioComponent {
           console.log(dataResponse.status);
           sessionStorage.setItem('veterinario', JSON.stringify(data.result));
           console.log(data);
-          this.router.navigate(['/store']);
+          this.router.navigate(['/veterinario-menu']);
         } 
         else {
           console.log(dataResponse.status);
