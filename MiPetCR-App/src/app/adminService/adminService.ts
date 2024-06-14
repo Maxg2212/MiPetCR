@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Product } from "../view/administrator-productos-crear/producto";
+import { Branch } from "../view/administrator-sucursal-crear/sucursal";
 
 @Injectable()
 export class AdminService {
@@ -43,6 +44,11 @@ export class AdminService {
   createProduct(product:Product):Observable<Product>{
     const url = this.path + 'create_product';
     return this._http.post<Product>(url,product);
+  }
+
+  createBranch(branch:Branch):Observable<Branch>{
+    const url = this.path + 'create_branch';
+    return this._http.post<Branch>(url,branch);
   }
 
 }
