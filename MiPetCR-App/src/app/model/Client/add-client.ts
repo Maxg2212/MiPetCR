@@ -8,8 +8,8 @@
 //   }
 
 export interface AddClientI {
-    cedula: string | null;
-    rol_id: string | null;
+    cedula: number | null;
+    rol_id: number | null;
     correo: string | null;
     contrasena: string | null;
     nombre: string | null;

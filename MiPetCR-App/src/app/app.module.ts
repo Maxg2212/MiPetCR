@@ -58,6 +58,7 @@ import { AdministratorMostrarExpedientesComponent } from './view/administrator-m
 import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.component';
 import { AdminService } from './adminService/adminService';
 import { CheckoutClientComponent } from './view/checkout-client/checkout-client.component';
+import { PasswordViewComponent } from './view/password-view/password-view.component';
 
 
 
@@ -114,7 +115,8 @@ import { CheckoutClientComponent } from './view/checkout-client/checkout-client.
     AdministratorProductosMostrarComponent,
     ViewCartGuestComponent,
     CheckoutClientComponent,
-    AdministratorMostrarExpedientesComponent
+    AdministratorMostrarExpedientesComponent,
+    PasswordViewComponent
   ],
   imports: [
     BrowserModule,
@@ -310,7 +312,12 @@ import { CheckoutClientComponent } from './view/checkout-client/checkout-client.
       { 
         path: 'checkout-client', 
         component: CheckoutClientComponent 
+      },
+      { 
+        path: 'change-password', 
+        component: PasswordViewComponent 
       }
+
     ]),
   ],
   providers: [AdminService],

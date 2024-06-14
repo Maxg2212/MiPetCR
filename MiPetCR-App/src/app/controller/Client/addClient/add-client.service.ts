@@ -47,7 +47,7 @@ export class AddClientService {
    * @link BD_ULR + add_client
    */
     addClient(form : AddClientI): Observable<ResponseTemplateI>{
-      let direccion = this.BD_URL + 'create_client';
+      let direccion = this.BD_URL + 'create_user';
       return this.http.post<ResponseTemplateI>(direccion, form).pipe(
         catchError(this.handleError)
         );

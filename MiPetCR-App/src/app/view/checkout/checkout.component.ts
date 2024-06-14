@@ -4,6 +4,7 @@ import { CheckoutService } from 'src/app/controller/Client/checkoutPayment/check
 import { ProductI, PlanFormsI, PlanI } from 'src/app/model/Client/newPayment';
 import { paymentTypes, paymentMethod } from 'src/app/setValues';
 import { ClientModelI } from 'src/app/model/Client/client-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -33,7 +34,9 @@ export class CheckoutComponent implements OnInit{
   /**
    * @description Constructor that injects the API's we are going to use.
    */
-  constructor(private api: CheckoutService) { }
+  constructor(private api: CheckoutService,
+    private router : Router,
+  ) { }
 
   ngOnInit(): void {
     const storedTotalPrice = localStorage.getItem('totalPrice');
@@ -102,6 +105,7 @@ export class CheckoutComponent implements OnInit{
         localStorage.removeItem('totalPrice');
         localStorage.removeItem('codelist');
         alert('Su pago se ha hecho exitosamente');
+        this.router.navigate(['/store']);
       },
       error => {
         console.error('Error al hacer el pago:', error);

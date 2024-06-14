@@ -12,8 +12,8 @@ import { ResponseTemplateI } from 'src/app/model/responseTemplate';
 })
 export class RegisterClientComponent {
   clientForm = new FormGroup({
-    cedula: new FormControl('', Validators.required),
-    rol_id: new FormControl('', Validators.required),
+    cedula: new FormControl(0, Validators.required),
+    rol_id: new FormControl(0, Validators.required),
     correo: new FormControl('', Validators.required),
     contrasena: new FormControl('', Validators.required),
     nombre: new FormControl('', Validators.required),
@@ -35,14 +35,13 @@ export class RegisterClientComponent {
       
       if (JSON.parse(JSON.stringify(dataResponse.status)) == 'ok') {
         console.log(dataResponse.status);
-        sessionStorage.setItem('client', JSON.stringify(data.result));
         console.log(data);
         alert('Usuario creado correctamente!');
         this.router.navigate(['/login-client']);
       } 
       else {
         console.log(dataResponse.status);
-        alert('Ingresa los datos correctos');
+        alert('Error al crear usuario');
         console.log(data);
       }
 
