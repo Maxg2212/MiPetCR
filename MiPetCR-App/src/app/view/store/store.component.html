@@ -1,11 +1,26 @@
 <body>
-    <app-navbar></app-navbar>
+  <nav class="navbar navbar-expand-lg" style="background-color: #e2860d;">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">MiPetCR</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2"></ul>
+        </div>
+        <div class="col-0">
+          <a href="/view-cart" type="button" class="btn btn-outline-light">Carrito</a>
+        </div>
+    </div>
+  </nav>
     
     <div class="container py-5">
+      <div class="row py-4">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 py-4 text-center">
+            <h1> Tienda de Productos</h1>
+        </div>
+      </div>
+
         <div class="row p-3">
           <!-- Aqui se itera -->
-          <div *ngFor = "let product of products; let i=index" class="col-md-3 col-sm-6 p-2">
-            <div class="col-4 p-2">
+          <div *ngFor = "let product of products; let i=index" class="col-4 p-2">
               <div class="card">
                 <div class="card-body">
                   <p class="card-text">{{product['descripcion']}}</p>
@@ -15,11 +30,14 @@
     
                 <div class="row justify-content-md-center">
                   <div class="col-4 p-2">
-                    <button class="btn btn-primary" (click)="viewProduct(i)">Ver</button>
+                    <button class="btn btn-primary" (click)="viewProduct(i)">Ver producto</button>
+                  </div>
+                  <div class="col-5 p-2">
+                    <button class="btn btn-primary" (click)="addProduct(i)">Agregar al carrito</button>
                   </div>
                 </div>
               </div>
-            </div>
+            
           </div>
           <!-- Aqui se itera -->
         </div>

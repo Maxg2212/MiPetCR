@@ -54,6 +54,7 @@ import { AdministratorCitasEliminarComponent } from './view/administrator-citas-
 import { AdministratorProductosCrearComponent } from './view/administrator-productos-crear/administrator-productos-crear.component';
 import { AdministratorProductosActualizarComponent } from './view/administrator-productos-actualizar/administrator-productos-actualizar.component';
 import { AdministratorProductosMostrarComponent } from './view/administrator-productos-mostrar/administrator-productos-mostrar.component';
+import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,6 +105,7 @@ import { AdministratorProductosMostrarComponent } from './view/administrator-pro
     AdministratorProductosCrearComponent,
     AdministratorProductosActualizarComponent,
     AdministratorProductosMostrarComponent,
+    ViewCartGuestComponent,
   ],
   imports: [
     BrowserModule,
@@ -286,6 +288,10 @@ import { AdministratorProductosMostrarComponent } from './view/administrator-pro
       { 
         path: 'checkout', 
         component: CheckoutComponent 
+      },
+      { 
+        path: 'view-cart-guest', 
+        component: ViewCartGuestComponent 
       }
     ]),
   ],
