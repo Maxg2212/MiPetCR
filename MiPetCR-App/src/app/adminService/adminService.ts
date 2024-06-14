@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Product } from "../view/administrator-productos-crear/producto";
 import { Branch } from "../view/administrator-sucursal-crear/sucursal";
+import { Appointment } from "../view/administrator-citas-crear/citas";
 
 @Injectable()
 export class AdminService {
@@ -50,5 +51,26 @@ export class AdminService {
     const url = this.path + 'create_branch';
     return this._http.post<Branch>(url,branch);
   }
+
+  createAppointment(appointment:Appointment):Observable<Appointment>{
+    const url = this.path + 'create_appointment';
+    return this._http.post<Appointment>(url,appointment);
+  }
+
+  updateProduct(product:Product):Observable<Product>{
+    const url = this.path + 'update_product';
+    return this._http.post<Product>(url,product);
+  }
+
+  updateBranch(branch:Branch):Observable<Branch>{
+    const url = this.path + 'update_branch';
+    return this._http.post<Branch>(url,branch);
+  }
+
+  updateAppointment(appointment:Appointment):Observable<Appointment>{
+    const url = this.path + 'update_appointment';
+    return this._http.post<Appointment>(url,appointment);
+  }
+  
 
 }
