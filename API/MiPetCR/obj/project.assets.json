@@ -2635,19 +2635,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jonas\\.nuget\\packages\\": {}
+    "C:\\Users\\Daniel\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jonas\\OneDrive\\Documentos\\GitHub\\MiPetCR\\API\\MiPetCR\\MiPetCR.csproj",
+      "projectUniqueName": "C:\\Users\\Daniel\\Desktop\\Proyecto Modelado\\MiPetCR\\API\\MiPetCR\\MiPetCR.csproj",
       "projectName": "MiPetCR",
-      "projectPath": "C:\\Users\\jonas\\OneDrive\\Documentos\\GitHub\\MiPetCR\\API\\MiPetCR\\MiPetCR.csproj",
-      "packagesPath": "C:\\Users\\jonas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jonas\\OneDrive\\Documentos\\GitHub\\MiPetCR\\API\\MiPetCR\\obj\\",
+      "projectPath": "C:\\Users\\Daniel\\Desktop\\Proyecto Modelado\\MiPetCR\\API\\MiPetCR\\MiPetCR.csproj",
+      "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Daniel\\Desktop\\Proyecto Modelado\\MiPetCR\\API\\MiPetCR\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jonas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2655,6 +2655,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

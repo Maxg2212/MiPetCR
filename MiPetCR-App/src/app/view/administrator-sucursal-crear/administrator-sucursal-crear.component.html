@@ -2,7 +2,7 @@
 
     <app-navbar></app-navbar>
 
-    <div class="container my-3">
+    <form (ngSubmit)="createBranch()"><div class="container my-3">
             
         <div class="card-body">
             
@@ -15,32 +15,32 @@
                             <div class="mb-4 mx-4">
                                 <label for="Provincia" class="form-label">Provincia</label>
                                 <input 
-                                    type="text" 
-                                    formControlName="Provincia"
+                                    [(ngModel)]="sucursal.provincia" name="provincia"
+                                    type="text"
                                     class="form-control" 
                                     placeholder="Provincia" />
                             </div>
                             <div class="mb-4 mx-4">
                                 <label for="Canton" class="form-label">Canton</label>
                                 <input 
-                                    type="number" 
-                                    formControlName="Canton"
+                                    [(ngModel)]="sucursal.canton" name="canton"
+                                    type="text"
                                     class="form-control" 
                                     placeholder="Canton" />
                             </div>
                             <div class="mb-4 mx-4">
                                 <label for="Distrito" class="form-label">Distrito</label>
-                                <input 
-                                    type="text" 
-                                    formControlName="Distrito"
+                                <input
+                                    [(ngModel)]="sucursal.distrito" name="distrito"
+                                    type="text"
                                     class="form-control" 
                                     placeholder="Distrito" />
                             </div>
                             <div class="mb-4 mx-4">
                                 <label for="Domicilio" class="form-label">Domicilio</label>
                                 <input 
-                                    type="text" 
-                                    formControlName="Domicilio"
+                                    [(ngModel)]="sucursal.domicilio" name="domicilio"
+                                    type="text"
                                     class="form-control" 
                                     placeholder="Domicilio" />
                             </div>
@@ -51,4 +51,5 @@
             </div>
         </div>
     </div>
-    </body>
+</form>
+</body>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -40,7 +41,6 @@ import { AdministratorSucursalMenuComponent } from './view/administrator-sucursa
 import { AdministratorCitasMenuComponent } from './view/administrator-citas-menu/administrator-citas-menu.component';
 import { AdministratorMostrarUsuariosComponent } from './view/administrator-mostrar-usuarios/administrator-mostrar-usuarios.component';
 import { AdministratorMostrarDuenosComponent } from './view/administrator-mostrar-duenos/administrator-mostrar-duenos.component';
-import { AdministratorMostrarProductosDeOrdenComponent } from './view/administrator-mostrar-productos-de-orden/administrator-mostrar-productos-de-orden.component';
 import { AdministratorMostrarOrdenesComponent } from './view/administrator-mostrar-ordenes/administrator-mostrar-ordenes.component';
 import { AdministratorSucursalCrearComponent } from './view/administrator-sucursal-crear/administrator-sucursal-crear.component';
 import { AdministratorSucursalBuscarComponent } from './view/administrator-sucursal-buscar/administrator-sucursal-buscar.component';
@@ -54,7 +54,13 @@ import { AdministratorCitasEliminarComponent } from './view/administrator-citas-
 import { AdministratorProductosCrearComponent } from './view/administrator-productos-crear/administrator-productos-crear.component';
 import { AdministratorProductosActualizarComponent } from './view/administrator-productos-actualizar/administrator-productos-actualizar.component';
 import { AdministratorProductosMostrarComponent } from './view/administrator-productos-mostrar/administrator-productos-mostrar.component';
+<<<<<<< HEAD
 import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.component';
+=======
+import {AdminService} from '../app/adminService/adminService';
+import { AdministratorMostrarExpedientesComponent } from './view/administrator-mostrar-expedientes/administrator-mostrar-expedientes.component';
+
+>>>>>>> e7dd998f18c32b3a3c28cf5ff13dac246b3c1a23
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,13 +111,18 @@ import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.c
     AdministratorProductosCrearComponent,
     AdministratorProductosActualizarComponent,
     AdministratorProductosMostrarComponent,
+<<<<<<< HEAD
     ViewCartGuestComponent,
+=======
+    AdministratorMostrarExpedientesComponent,
+>>>>>>> e7dd998f18c32b3a3c28cf5ff13dac246b3c1a23
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
       { 
         path: '', 
@@ -182,8 +193,8 @@ import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.c
         component: AdministratorMostrarDuenosComponent
       },
       {
-        path: 'administrator-mostrar-productos-de-orden',
-        component: AdministratorMostrarProductosDeOrdenComponent
+        path: 'administrator-mostrar-expedientes',
+        component: AdministratorMostrarExpedientesComponent
       },
       {
         path: 'administrator-mostrar-ordenes',
@@ -204,6 +215,10 @@ import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.c
       {
         path: 'administrator-producto-actualizar',
         component: AdministratorProductosActualizarComponent
+      },
+      {
+        path: 'administrator-sucursal-menu',
+        component: AdministratorSucursalMenuComponent
       },
       {
         path: 'administrator-sucursal-crear',
@@ -295,7 +310,7 @@ import { ViewCartGuestComponent } from './view/view-cart-guest/view-cart-guest.c
       }
     ]),
   ],
-  providers: [],
+  providers: [AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

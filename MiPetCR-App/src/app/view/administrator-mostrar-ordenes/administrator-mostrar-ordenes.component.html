@@ -1,1 +1,23 @@
-<p>administrator-mostrar-ordenes works!</p>
+<table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre Orden</th>
+        <th>Correo</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Metodo Pago</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders.result">
+        <td>{{ order.id }}</td>
+        <td>{{ order.nombre_order }}</td>
+        <td>{{ order.correo }}</td>
+        <td>{{ order.fecha }}</td>
+        <td>{{ order.hora }}</td>
+        <td>{{ order.metodo_pago }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

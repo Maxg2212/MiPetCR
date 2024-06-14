@@ -1,1 +1,20 @@
-<p>administrator-mostrar-usuarios works!</p>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Cedula</th>
+      <th>Correo</th>
+      <th>Telefono</th>
+      <th>Rol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users.result">
+      <td>{{ user.nombre }}</td>
+      <td>{{ user.cedula }}</td>
+      <td>{{ user.correo }}</td>
+      <td>{{ user.telefono }}</td>
+      <td>{{ user.rol_nombre }}</td>
+    </tr>
+  </tbody>
+</table>
